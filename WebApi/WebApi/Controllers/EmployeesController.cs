@@ -13,47 +13,47 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DeptsController : ControllerBase
+    public class EmployeesController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
 
-        public DeptsController(ApplicationDBContext context)
+        public EmployeesController(ApplicationDBContext context)
         {
             _context = context;
         }
 
-        // GET: api/Depts
+        // GET: api/Employees
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Depts>>> GetDept()
+        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
         {
-            return await _context.Dept.ToListAsync();
+            return await _context.Employee.ToListAsync();
         }
 
-        // GET: api/Depts/5
+        // GET: api/Employees/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Depts>> GetDepts(int id)
+        public async Task<ActionResult<Employee>> GetEmployee(int id)
         {
-            var depts = await _context.Dept.FindAsync(id);
+            var employee = await _context.Employee.FindAsync(id);
 
-            if (depts == null)
+            if (employee == null)
             {
                 return NotFound();
             }
 
-            return depts;
+            return employee;
         }
 
-        // PUT: api/Depts/5
+        // PUT: api/Employees/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDepts(int id, Depts depts)
+        public async Task<IActionResult> PutEmployee(int id, Employee employee)
         {
-            if (id != depts.deptid)
+            if (id != employee.employeeId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(depts).State = EntityState.Modified;
+            _context.Entry(employee).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace WebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DeptsExists(id))
+                if (!EmployeeExists(id))
                 {
                     return NotFound();
                 }
@@ -74,36 +74,36 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Depts
+        // POST: api/Employees
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Depts>> PostDepts(Depts depts)
+        public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
         {
-            _context.Dept.Add(depts);
+            _context.Employee.Add(employee);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDepts", new { id = depts.deptid }, depts);
+            return CreatedAtAction("GetEmployee", new { id = employee.employeeId }, employee);
         }
 
-        // DELETE: api/Depts/5
+        // DELETE: api/Employees/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDepts(int id)
+        public async Task<IActionResult> DeleteEmployee(int id)
         {
-            var depts = await _context.Dept.FindAsync(id);
-            if (depts == null)
+            var employee = await _context.Employee.FindAsync(id);
+            if (employee == null)
             {
                 return NotFound();
             }
 
-            _context.Dept.Remove(depts);
+            _context.Employee.Remove(employee);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool DeptsExists(int id)
+        private bool EmployeeExists(int id)
         {
-            return _context.Dept.Any(e => e.deptid == id);
+            return _context.Employee.Any(e => e.employeeId == id);
         }
     }
 }
