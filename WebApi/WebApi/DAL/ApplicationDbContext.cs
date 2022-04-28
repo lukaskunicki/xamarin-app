@@ -18,10 +18,19 @@ namespace WebApi.DAL
 
         public DbSet<Ticket> Ticket { get; set; }
 
+        public DbSet<Comment> Comment { get; set; }
+
+        public DbSet<Project> Project { get; set; }
+
+        public DbSet<Sprint> Sprint { get; set; }
+
+        public DbSet<Tag> Tag { get; set; }
 
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options)
         : base(options)
         {
         }
+
+        public DbSet<WebApi.Model.Client> Client { get; set; }
     }
 }

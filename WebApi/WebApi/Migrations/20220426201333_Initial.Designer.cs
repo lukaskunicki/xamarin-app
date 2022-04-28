@@ -12,7 +12,7 @@ using WebApi.DAL;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20220413195943_Initial")]
+    [Migration("20220426201333_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,54 @@ namespace WebApi.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("WebApi.Model.Client", b =>
+                {
+                    b.Property<int>("clientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("clientId"), 1L, 1);
+
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int?>("responsibleEmployeeemployeeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("clientId");
+
+                    b.HasIndex("responsibleEmployeeemployeeId");
+
+                    b.ToTable("Client");
+                });
+
+            modelBuilder.Entity("WebApi.Model.Comment", b =>
+                {
+                    b.Property<int>("commentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("commentId"), 1L, 1);
+
+                    b.Property<int?>("assignedEmployeeemployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("created")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("commentId");
+
+                    b.HasIndex("assignedEmployeeemployeeId");
+
+                    b.ToTable("Comments");
+                });
 
             modelBuilder.Entity("WebApi.Model.Employee", b =>
                 {
@@ -68,6 +116,75 @@ namespace WebApi.Migrations
                     b.HasKey("priorityId");
 
                     b.ToTable("Priority");
+                });
+
+            modelBuilder.Entity("WebApi.Model.Project", b =>
+                {
+                    b.Property<int>("projectId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("projectId"), 1L, 1);
+
+                    b.Property<int>("clientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("endTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("projectManageremployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("startTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("projectId");
+
+                    b.HasIndex("clientId");
+
+                    b.HasIndex("projectManageremployeeId");
+
+                    b.ToTable("Project");
+                });
+
+            modelBuilder.Entity("WebApi.Model.Sprint", b =>
+                {
+                    b.Property<int>("sprintId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("sprintId"), 1L, 1);
+
+                    b.Property<DateTime>("endTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("startTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("sprintId");
+
+                    b.ToTable("Sprint");
+                });
+
+            modelBuilder.Entity("WebApi.Model.Tag", b =>
+                {
+                    b.Property<int>("tagId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("tagId"), 1L, 1);
+
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("tagId");
+
+                    b.ToTable("Tag");
                 });
 
             modelBuilder.Entity("WebApi.Model.Team", b =>
@@ -129,6 +246,24 @@ namespace WebApi.Migrations
                     b.ToTable("Ticket");
                 });
 
+            modelBuilder.Entity("WebApi.Model.Client", b =>
+                {
+                    b.HasOne("WebApi.Model.Employee", "responsibleEmployee")
+                        .WithMany()
+                        .HasForeignKey("responsibleEmployeeemployeeId");
+
+                    b.Navigation("responsibleEmployee");
+                });
+
+            modelBuilder.Entity("WebApi.Model.Comment", b =>
+                {
+                    b.HasOne("WebApi.Model.Employee", "assignedEmployee")
+                        .WithMany()
+                        .HasForeignKey("assignedEmployeeemployeeId");
+
+                    b.Navigation("assignedEmployee");
+                });
+
             modelBuilder.Entity("WebApi.Model.Employee", b =>
                 {
                     b.HasOne("WebApi.Model.Team", "team")
@@ -138,6 +273,25 @@ namespace WebApi.Migrations
                         .IsRequired();
 
                     b.Navigation("team");
+                });
+
+            modelBuilder.Entity("WebApi.Model.Project", b =>
+                {
+                    b.HasOne("WebApi.Model.Client", "client")
+                        .WithMany()
+                        .HasForeignKey("clientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApi.Model.Employee", "projectManager")
+                        .WithMany()
+                        .HasForeignKey("projectManageremployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("client");
+
+                    b.Navigation("projectManager");
                 });
 
             modelBuilder.Entity("WebApi.Model.Ticket", b =>
