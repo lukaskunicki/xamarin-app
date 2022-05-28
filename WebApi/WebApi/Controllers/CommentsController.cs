@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,31 +17,46 @@ namespace WebApi.Controllers
     public class CommentsController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
+        private readonly IMapper _mapper;
 
-        public CommentsController(ApplicationDBContext context)
+        public CommentsController(ApplicationDBContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Comments
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Comment>>> GetComment()
+        public ActionResult<IEnumerable<Comment>> GetComment()
         {
-            return await _context.Comment.ToListAsync();
+            var comments = _context.Comment
+            .Include(i => i.assignedEmployee)
+            .Include(i => i.assignedEmployee.team)
+            .ToList();
+
+            var getComments = _mapper.Map<IList<Comment>>(comments);
+
+            return Ok(getComments);
         }
 
         // GET: api/Comments/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Comment>> GetComment(int id)
         {
-            var comment = await _context.Comment.FindAsync(id);
+            var result = _context.Comment
+                .Where(s => s.commentId == id)
+                .Include(i => i.assignedEmployee)
+                .Include(i => i.assignedEmployee.team)
+                .FirstOrDefault();
 
-            if (comment == null)
+            if (result == null)
             {
                 return NotFound();
             }
 
-            return comment;
+            var getComment = _mapper.Map<Comment>(result);
+
+            return Ok(getComment);
         }
 
         // PUT: api/Comments/5

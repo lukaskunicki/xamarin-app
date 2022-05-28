@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,31 +17,42 @@ namespace WebApi.Controllers
     public class TeamsController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
+        private readonly IMapper _mapper;
 
-        public TeamsController(ApplicationDBContext context)
+        public TeamsController(ApplicationDBContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Teams
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Team>>> GetTeam()
         {
-            return await _context.Team.ToListAsync();
+            var teams = _context.Team
+                .ToList();
+
+            var getTeams = _mapper.Map<IList<Team>>(teams);
+
+            return Ok(getTeams);
         }
 
         // GET: api/Teams/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Team>> GetTeam(int id)
         {
-            var team = await _context.Team.FindAsync(id);
+            var result = _context.Team
+                .Where(s => s.teamId == id)
+                .FirstOrDefault();
 
-            if (team == null)
+            if (result == null)
             {
                 return NotFound();
             }
 
-            return team;
+            var getTeam = _mapper.Map<Team>(result);
+
+            return Ok(getTeam);
         }
 
         // PUT: api/Teams/5

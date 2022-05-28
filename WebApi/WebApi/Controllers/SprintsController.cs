@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,31 +17,42 @@ namespace WebApi.Controllers
     public class SprintsController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
+        private readonly IMapper _mapper;
 
-        public SprintsController(ApplicationDBContext context)
+        public SprintsController(ApplicationDBContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Sprints
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Sprint>>> GetSprint()
         {
-            return await _context.Sprint.ToListAsync();
+            var sprints = _context.Sprint
+                .ToList();
+
+            var getSprints = _mapper.Map<IList<Sprint>>(sprints);
+
+            return Ok(getSprints);
         }
 
         // GET: api/Sprints/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Sprint>> GetSprint(int id)
         {
-            var sprint = await _context.Sprint.FindAsync(id);
+            var result = _context.Sprint
+                .Where(s => s.sprintId == id)
+                .FirstOrDefault();
 
-            if (sprint == null)
+            if (result == null)
             {
                 return NotFound();
             }
 
-            return sprint;
+            var getSprint = _mapper.Map<Sprint>(result);
+
+            return Ok(getSprint);
         }
 
         // PUT: api/Sprints/5

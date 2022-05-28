@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,31 +17,51 @@ namespace WebApi.Controllers
     public class TicketsController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
+        private readonly IMapper _mapper;
 
-        public TicketsController(ApplicationDBContext context)
+        public TicketsController(ApplicationDBContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Tickets
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Ticket>>> GetTicket()
+        public ActionResult<IEnumerable<Ticket>> GetTicket()
         {
-            return await _context.Ticket.ToListAsync();
+            var tickets = _context.Ticket
+                .Include(i => i.priority)
+                .Include(i => i.assignedEmployee)
+                .Include(i => i.assignedEmployee.team)
+                .Include(i => i.reporter)
+                .Include(i => i.reporter.team)
+                .ToList();
+
+            var getTickets = _mapper.Map<IList<Ticket>>(tickets);
+
+            return Ok(getTickets);
         }
 
         // GET: api/Tickets/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Ticket>> GetTicket(int id)
+        public ActionResult<Ticket> GetTicket(int id)
         {
-            var ticket = await _context.Ticket.FindAsync(id);
+            var result = _context.Ticket
+                .Where(s => s.ticketId == id)
+                .Include(i => i.assignedEmployee)
+                .Include(i => i.assignedEmployee.team)
+                .Include(i => i.reporter)
+                .Include(i => i.reporter.team)
+                .FirstOrDefault();
 
-            if (ticket == null)
+            if (result == null)
             {
                 return NotFound();
             }
 
-            return ticket;
+            var getTicket = _mapper.Map<Ticket>(result);
+
+            return Ok(getTicket);
         }
 
         // PUT: api/Tickets/5

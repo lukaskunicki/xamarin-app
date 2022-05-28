@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,31 +17,42 @@ namespace WebApi.Controllers
     public class PrioritiesController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
+        private readonly IMapper _mapper;
 
-        public PrioritiesController(ApplicationDBContext context)
+        public PrioritiesController(ApplicationDBContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Priorities
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Priority>>> GetPriority()
         {
-            return await _context.Priority.ToListAsync();
+            var priorities = _context.Priority
+                .ToList();
+
+            var getPriorities = _mapper.Map<IList<Priority>>(priorities);
+
+            return Ok(getPriorities);
         }
 
         // GET: api/Priorities/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Priority>> GetPriority(int id)
         {
-            var priority = await _context.Priority.FindAsync(id);
+            var result = _context.Priority
+                .Where(s => s.priorityId == id)
+                .FirstOrDefault();
 
-            if (priority == null)
+            if (result == null)
             {
                 return NotFound();
             }
 
-            return priority;
+            var getPriority = _mapper.Map<Priority>(result);
+
+            return Ok(getPriority);
         }
 
         // PUT: api/Priorities/5

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,32 +17,49 @@ namespace WebApi.Controllers
     public class ClientsController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
+        private readonly IMapper _mapper;
 
-        public ClientsController(ApplicationDBContext context)
+
+        public ClientsController(ApplicationDBContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Clients
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Client>>> GetClient()
+        public ActionResult<IEnumerable<Client>> GetClient()
         {
-            return await _context.Client.ToListAsync();
+            var clients = _context.Client
+            .Include(i => i.responsibleEmployee)
+            .Include(i => i.responsibleEmployee.team)
+            .ToList();
+
+            var getClients = _mapper.Map<IList<Client>>(clients);
+
+            return Ok(getClients);
         }
 
         // GET: api/Clients/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Client>> GetClient(int id)
         {
-            var client = await _context.Client.FindAsync(id);
+            var result = _context.Client
+                .Where(s => s.clientId == id)
+                .Include(i => i.responsibleEmployee)
+                .Include(i => i.responsibleEmployee.team)
+                .FirstOrDefault();
 
-            if (client == null)
+            if (result == null)
             {
                 return NotFound();
             }
 
-            return client;
+            var getClient = _mapper.Map<Client>(result);
+
+            return Ok(getClient);
         }
+
 
         // PUT: api/Clients/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

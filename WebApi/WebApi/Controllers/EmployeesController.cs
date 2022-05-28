@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,31 +17,45 @@ namespace WebApi.Controllers
     public class EmployeesController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
+        private readonly IMapper _mapper;
 
-        public EmployeesController(ApplicationDBContext context)
+        public EmployeesController(ApplicationDBContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Employees
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
         {
-            return await _context.Employee.ToListAsync();
+            var employees = _context.Employee
+                .Include(i => i.team)
+                .ToList();
+
+            var getEmployees = _mapper.Map<IList<Employee>>(employees);
+
+            return Ok(getEmployees);
         }
 
         // GET: api/Employees/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Employee>> GetEmployee(int id)
         {
-            var employee = await _context.Employee.FindAsync(id);
 
-            if (employee == null)
+            var result = _context.Employee
+                .Where(s => s.employeeId == id)
+                .Include(i => i.team)
+                .FirstOrDefault();
+
+            if (result == null)
             {
                 return NotFound();
             }
 
-            return employee;
+            var getEmployee = _mapper.Map<Employee>(result);
+
+            return Ok(getEmployee);
         }
 
         // PUT: api/Employees/5

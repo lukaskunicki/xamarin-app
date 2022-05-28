@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,31 +17,42 @@ namespace WebApi.Controllers
     public class TagsController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
+        private readonly IMapper _mapper;
 
-        public TagsController(ApplicationDBContext context)
+        public TagsController(ApplicationDBContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Tags
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Tag>>> GetTag()
         {
-            return await _context.Tag.ToListAsync();
+            var tags = _context.Tag
+                .ToList();
+
+            var getTags = _mapper.Map<IList<Tag>>(tags);
+
+            return Ok(getTags);
         }
 
         // GET: api/Tags/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Tag>> GetTag(int id)
         {
-            var tag = await _context.Tag.FindAsync(id);
+            var result = _context.Tag
+                .Where(s => s.tagId == id)
+                .FirstOrDefault();
 
-            if (tag == null)
+            if (result == null)
             {
                 return NotFound();
             }
 
-            return tag;
+            var getTag = _mapper.Map<Tag>(result);
+
+            return Ok(getTag);
         }
 
         // PUT: api/Tags/5

@@ -31,6 +31,6 @@ namespace WebApi.DAL
         {
         }
 
-        public DbSet<WebApi.Model.Client> Client { get; set; }
+        public DbSet<Client> Client { get; set; }
     }
 }

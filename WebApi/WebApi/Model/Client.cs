@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApi.Model
 {
@@ -11,6 +12,7 @@ namespace WebApi.Model
         [StringLength(255)]
         public string description { get; set; }
 
-        public Employee? responsibleEmployee { get; set; }
+        public virtual Employee? responsibleEmployee { get; set; }
+
     }
 }
