@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoList.Views.ClientsPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:TodoList.ViewModels"  
+             xmlns:model="clr-namespace:TodoList.Services.APIClient"
+             x:Name="BrowseClientsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh" Command="{Binding LoadClientsCommand}"/>
+        <ToolbarItem Text="Add" Command="{Binding AddClientCommand}"/>
+    </ContentPage.ToolbarItems>
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+    <ListView ItemsSource="{Binding Clients}" x:Name="ClientsListView">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Frame OutlineColor="LightGray" Margin="10, 10, 10, 10" Padding="10, 10, 10, 10">
+                        <FlexLayout Direction="Row" x:Name="Item">
+                            <Label Text="{Binding Description}" FlexLayout.Grow="1" Margin="10, 10, 10, 10" />
+                            <Button Text="Delete" BindingContext="{Binding Source={x:Reference ClientsListView}, Path=BindingContext}" Command="{Binding DeleteClientCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
+                            <Button Text="Edit" BindingContext="{Binding Source={x:Reference ClientsListView}, Path=BindingContext}" Command="{Binding EditClientCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                        </FlexLayout>
+                    </Frame>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
