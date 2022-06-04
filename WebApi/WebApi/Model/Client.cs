@@ -12,6 +12,8 @@ namespace WebApi.Model
         [StringLength(255)]
         public string description { get; set; }
 
+        [ForeignKey("[responsibleEmployeeemployeeId]")]
+        public int? responsibleEmployeeemployeeId { get; set; }
         public virtual Employee? responsibleEmployee { get; set; }
 
     }

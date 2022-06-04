@@ -28,6 +28,9 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="#000"></Setter>
+            </Style>
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

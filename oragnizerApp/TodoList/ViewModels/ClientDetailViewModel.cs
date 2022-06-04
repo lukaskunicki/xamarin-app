@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using TodoList.Services.APIClient;
 using Xamarin.Forms;
 
@@ -10,11 +12,16 @@ namespace TodoList.ViewModels
     [QueryProperty(nameof(ClientId), nameof(ClientId))]
     public class ClientDetailViewModel : BaseDataViewModel<APIClient>
     {
+
+        private Employee _selectedEmployee;
         private int clientId;
         private string description;
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
+
+        public ObservableCollection<Employee> Employees { get; }
+        public Command LoadEmployeesCommand { get; }
 
         public ClientDetailViewModel()
         {
@@ -22,6 +29,10 @@ namespace TodoList.ViewModels
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
+
+            Employees = new ObservableCollection<Employee>();
+            LoadEmployeesCommand = new Command(async () => await ExecuteLoadEmployeesCommand());
+            ExecuteLoadEmployeesCommand();
         }
 
         private bool ValidateSave()
@@ -50,6 +61,42 @@ namespace TodoList.ViewModels
             set => SetProperty(ref description, value);
         }
 
+        async Task ExecuteLoadEmployeesCommand()
+        {
+            IsBusy = true;
+
+            try
+            {
+                Employees.Clear();
+                var employees = await _apiClient.EmployeesAllAsync();
+
+                foreach (var employee in employees)
+                {
+                    if (!Employees.Contains(employee))
+                    {
+                        Employees.Add(employee);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        public Employee SelectedEmployee
+        {
+            get => _selectedEmployee;
+            set
+            {
+                SetProperty(ref _selectedEmployee, value);
+            }
+        }
+
         public async void LoadItemId(int itemId)
         {
             try
@@ -76,12 +123,24 @@ namespace TodoList.ViewModels
         {
             Client newClient = new Client()
             {
-                Description = Description,
+                ClientId = clientId,
+                Description = description,
+                ResponsibleEmployeeemployeeId = _selectedEmployee.EmployeeId,
             };
-            var res = await _apiClient.ClientsPOSTAsync(newClient);
+            try
+            {
+                await _apiClient.ClientsPUTAsync(newClient.ClientId, newClient);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+            finally
+            {
+                await Shell.Current.GoToAsync("..");
+            }
 
             // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync("..");
         }
     }
 }

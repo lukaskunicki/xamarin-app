@@ -3958,6 +3958,9 @@ namespace TodoList.Services.APIClient
         [System.ComponentModel.DataAnnotations.StringLength(255)]
         public string Description { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("ResponsibleEmployeeemployeeId")]
+        public int? ResponsibleEmployeeemployeeId { get; set; }
+
         [Newtonsoft.Json.JsonProperty("responsibleEmployee")]
         public Employee ResponsibleEmployee { get; set; }
 

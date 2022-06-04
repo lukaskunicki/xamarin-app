@@ -30,5 +30,21 @@ namespace TodoList.ViewModels
             return clients;
         }
 
+        public async Task<List<Employee>> LoadEmployees()
+        {
+            List<Employee> employees = new List<Employee>();
+            try
+            {
+                foreach (var employee in await _apiClient.EmployeesAllAsync())
+                {
+                    employees.Add(employee);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return employees;
+        }
     }
 }

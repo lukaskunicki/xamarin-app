@@ -19,7 +19,10 @@
                 <ViewCell>
                     <Frame OutlineColor="LightGray" Margin="10, 10, 10, 10" Padding="10, 10, 10, 10">
                         <FlexLayout Direction="Row" x:Name="Item">
-                            <Label Text="{Binding Description}" FlexLayout.Grow="1" Margin="10, 10, 10, 10" />
+                            <Label Text="Client:" FlexLayout.Grow="1" />
+                            <Label Text="{Binding Description}" FlexLayout.Grow="1"  />
+                            <Label Text="Employee:" FlexLayout.Grow="1" />
+                            <Label Text="{Binding ResponsibleEmployee.Surname}" FlexLayout.Grow="1"  />
                             <Button Text="Delete" BindingContext="{Binding Source={x:Reference ClientsListView}, Path=BindingContext}" Command="{Binding DeleteClientCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
                             <Button Text="Edit" BindingContext="{Binding Source={x:Reference ClientsListView}, Path=BindingContext}" Command="{Binding EditClientCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
                         </FlexLayout>
