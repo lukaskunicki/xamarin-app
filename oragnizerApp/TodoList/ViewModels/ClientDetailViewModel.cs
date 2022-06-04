@@ -13,6 +13,22 @@ namespace TodoList.ViewModels
         private int clientId;
         private string description;
 
+        public Command SaveCommand { get; }
+        public Command CancelCommand { get; }
+
+        public ClientDetailViewModel()
+        {
+            SaveCommand = new Command(OnSave, ValidateSave);
+            CancelCommand = new Command(OnCancel);
+            this.PropertyChanged +=
+                (_, __) => SaveCommand.ChangeCanExecute();
+        }
+
+        private bool ValidateSave()
+        {
+            return true;
+        }
+
         public int Id { get; set; }
 
         public int ClientId
@@ -30,7 +46,7 @@ namespace TodoList.ViewModels
 
         public string Description
         {
-            get => Description;
+            get => description;
             set => SetProperty(ref description, value);
         }
 
@@ -39,16 +55,33 @@ namespace TodoList.ViewModels
             try
             {
                 var client = await _apiClient.ClientsGETAsync(itemId);
+
                 if (client != null)
                 {
-                    Id = client.ClientId;
-                    Description = client.Description;
+                    this.Id = client.ClientId;
+                    this.Description = client.Description;
                 }
             }
             catch (Exception)
             {
                 Debug.WriteLine("Failed to Load Serviceman");
             }
+        }
+        private async void OnCancel()
+        {
+            await Shell.Current.GoToAsync("..");
+        }
+
+        private async void OnSave()
+        {
+            Client newClient = new Client()
+            {
+                Description = Description,
+            };
+            var res = await _apiClient.ClientsPOSTAsync(newClient);
+
+            // This will pop the current page off the navigation stack
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

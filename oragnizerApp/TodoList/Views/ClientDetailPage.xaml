@@ -2,14 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoList.Views.ClientDetailPage"
-             Title="{Binding Name}">
+            
+             Title="Edit client">
 
     <StackLayout Spacing="20" Padding="15">
         <Frame OutlineColor="LightGray">
             <StackLayout Orientation="Horizontal"
                          Spacing="15">
                 <Label Text="Name:" FontSize="Micro" />
-                <Label Text="{Binding Name}" FontSize="Micro"/>
+                <Label Text="{Binding Description}" FontSize="Micro"/>
             </StackLayout>
         </Frame>
         <Frame OutlineColor="LightGray">

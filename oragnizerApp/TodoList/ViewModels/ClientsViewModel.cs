@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace TodoList.ViewModels
 {
-    public class ClientsViewModel : BaseDataViewModel<Client>
+    public class ClientsViewModel : BaseDataViewModel<APIClient>
     {
         private Client _selectedClient;
 
@@ -80,25 +80,23 @@ namespace TodoList.ViewModels
 
         private async void OnAddClient(object obj)
         {
-            //await Shell.Current.GoToAsync(nameof(NewClientPage));
+            await Shell.Current.GoToAsync(nameof(NewClientPage));
         }
 
         async void OnClientSelected(Client client)
         {
-            if (client == null)
-                return;
-            return;
+          
+            if (client == null) return;
             // This will push the ItemDetailPage onto the navigation stack
-           // await Shell.Current.GoToAsync($"{nameof(ClientDetailPage)}?{nameof(ClientDetailViewModel.ClientId)}={client.Id}");
+            await Shell.Current.GoToAsync($"{nameof(ClientDetailPage)}?{nameof(ClientDetailViewModel.ClientId)}={client.ClientId}");
         }
 
         async void EditClientCommandHandler(Client client)
         {
             if (client == null)
                 return;
-
             // This will push the CategoryDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(CategoryDetailPage)}?{nameof(CategoryDetailViewModel.CategoryId)}={Category.Id}");
+            await Shell.Current.GoToAsync($"{nameof(ClientDetailPage)}?{nameof(ClientDetailViewModel.ClientId)}={client.ClientId}");
         }
 
         async void DeleteClientCommandHandler(Client client)

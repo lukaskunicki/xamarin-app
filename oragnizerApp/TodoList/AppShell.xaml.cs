@@ -17,7 +17,7 @@ namespace TodoList
             //Routing.RegisterRoute(nameof(NewServicemanPage), typeof(NewServicemanPage));
             //Routing.RegisterRoute(nameof(ServicemanDetailPage), typeof(ServicemanDetailPage));
             Routing.RegisterRoute(nameof(ClientDetailPage), typeof(ClientDetailPage));
-            //Routing.RegisterRoute(nameof(NewClientPage), typeof(NewClientPage));
+            Routing.RegisterRoute(nameof(NewClientPage), typeof(NewClientPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

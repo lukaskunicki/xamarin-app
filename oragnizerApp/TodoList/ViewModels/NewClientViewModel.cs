@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using TodoList.Services.APIClient;
 using Xamarin.Forms;
@@ -9,14 +10,15 @@ namespace TodoList.ViewModels
     public class NewClientViewModel : BaseDataViewModel<APIClient>
     {
         private int id;
-        private string name;
-        private string address;
+        private string description;
+        private Employee responsibleEmployee;
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
         public NewClientViewModel()
         {
+
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
@@ -24,7 +26,7 @@ namespace TodoList.ViewModels
         }
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(name);
+            return true;
         }
 
         public int Id
@@ -33,16 +35,16 @@ namespace TodoList.ViewModels
             set => SetProperty(ref id, value);
         }
 
-        public string Name
+        public string Description
         {
-            get => name;
-            set => SetProperty(ref name, value);
+            get => description;
+            set => Console.WriteLine(value);
         }
 
-        public string Address
+        public Employee ResponsibleEmployee
         {
-            get => address;
-            set => SetProperty(ref address, value);
+            get => responsibleEmployee; 
+            set => SetProperty(ref responsibleEmployee, value); 
         }
 
         private async void OnCancel()
@@ -52,16 +54,17 @@ namespace TodoList.ViewModels
 
         private async void OnSave()
         {
-        /*    AddC newClient = new AddClient()
+            Client newClient = new Client()
             {
-                Name = Name,
-                Address = Address,
+                Description = Description,
+                ResponsibleEmployee = ResponsibleEmployee
             };
-
-            await _apiClient.ClientsPostAsync(newClient);
+            Console.WriteLine("fdsfdsfdsfdsfdssd");
+            var res = await _apiClient.ClientsPOSTAsync(newClient);
+            Console.WriteLine(res);
 
             // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync(".."); */
+            await Shell.Current.GoToAsync(".."); 
         }
     }
 }

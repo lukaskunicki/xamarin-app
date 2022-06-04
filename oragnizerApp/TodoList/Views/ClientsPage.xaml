@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoList.Views.ClientsPage"
              Title="{Binding Title}"
-             xmlns:local="clr-namespace:TodoList.ViewModels"  
-             xmlns:model="clr-namespace:TodoList.Services.APIClient"
              x:Name="BrowseClientsPage">
 
     <ContentPage.ToolbarItems>
