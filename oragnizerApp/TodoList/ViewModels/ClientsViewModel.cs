@@ -42,7 +42,6 @@ namespace TodoList.ViewModels
             {
                 Clients.Clear();
                 var clients = await _apiClient.ClientsAllAsync();
-                Debug.WriteLine(clients);
 
                 foreach (var client in clients)
                 {

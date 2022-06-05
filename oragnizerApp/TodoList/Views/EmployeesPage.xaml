@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoList.Views.EmployeesPage"
+             Title="{Binding Title}"
+             x:Name="BrowseEmployeesPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh" Command="{Binding LoadEmployeesCommand}"/>
+        <ToolbarItem Text="Add" Command="{Binding AddEmployeesCommand}"/>
+    </ContentPage.ToolbarItems>
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+    <ListView ItemsSource="{Binding Employees}" x:Name="EmployeesListView">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Frame OutlineColor="LightGray" Margin="10, 10, 10, 10" Padding="10, 10, 10, 10">
+                        <FlexLayout Direction="Row" x:Name="Item">
+                            <Label Text="Employee:" FlexLayout.Grow="1" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Name}" />
+                                        <Span Text=" " />
+                                        <Span Text="{Binding Surname}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Button Text="Delete" BindingContext="{Binding Source={x:Reference EmployeesListView}, Path=BindingContext}" Command="{Binding DeleteEmployeeCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
+                            <Button Text="Edit" BindingContext="{Binding Source={x:Reference EmployeesListView}, Path=BindingContext}" Command="{Binding EditEmployeeCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                        </FlexLayout>
+                    </Frame>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
