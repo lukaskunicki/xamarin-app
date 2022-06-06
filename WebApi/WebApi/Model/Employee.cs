@@ -14,6 +14,8 @@ namespace WebApi.Model
         [StringLength(50)]
         public String surname { get; set; }
 
+        [ForeignKey("[teamId]")]
+        public int? teamId { get; set; }
         public Team team { get; set; }
     }
 }

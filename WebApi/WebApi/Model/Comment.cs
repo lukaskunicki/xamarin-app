@@ -13,6 +13,10 @@ namespace WebApi.Model
 
         public string content { get; set; }
 
+        [ForeignKey("[assignedEmployeeemployeeId]")]
+
+        public int? assignedEmployeeemployeeId { get; set; }
+
         public Employee? assignedEmployee { get; set; }
 
         public DateTime created { get; set; }

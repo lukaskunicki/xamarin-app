@@ -31,6 +31,7 @@ namespace WebApi.Controllers
         {
             var projects = _context.Project
                 .Include(i => i.projectManager)
+                .Include(i => i.projectManager.team)
                 .Include(i => i.client)
                 .ToList();
 
