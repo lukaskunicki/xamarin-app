@@ -23,6 +23,11 @@ namespace WebApi.Model
         [ForeignKey("[reporteremployeeId]")]
         public int reporteremployeeId { get; set; }
         public Employee? reporter { get; set; }
+
+        [ForeignKey("[sprintId]")]
+        public int sprintId { get; set; }
+
+        public Sprint sprint { get; set; }
         public DateTime created { get; set; }
     }
 }
