@@ -405,3 +405,4 @@ FodyWeavers.xsd
 /oragnizerApp/.vs/
 /oragnizerApp/.idea/
 /WebApi/.idea/
+/WebApi/WebApi/appsettings.json
