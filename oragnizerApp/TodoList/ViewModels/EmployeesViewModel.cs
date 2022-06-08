@@ -79,7 +79,8 @@ namespace TodoList.ViewModels
 
         private async void OnAddEmployee(object obj)
         {
-            //await Shell.Current.GoToAsync(nameof(NewClientPage));
+            Debug.WriteLine("fdsfdsfdsfdsfdsfdsfds");
+            await Shell.Current.GoToAsync(nameof(NewEmployeePage));
         }
 
         async void OnEmployeeSelected(Employee employee)

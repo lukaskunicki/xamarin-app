@@ -15,7 +15,7 @@ namespace TodoList
             //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             //Routing.RegisterRoute(nameof(NewCategoryPage), typeof(NewCategoryPage));
             //Routing.RegisterRoute(nameof(NewServicemanPage), typeof(NewServicemanPage));
-            //Routing.RegisterRoute(nameof(ServicemanDetailPage), typeof(ServicemanDetailPage));
+            Routing.RegisterRoute(nameof(NewEmployeePage), typeof(NewEmployeePage));
             Routing.RegisterRoute(nameof(ClientDetailPage), typeof(ClientDetailPage));
             Routing.RegisterRoute(nameof(NewClientPage), typeof(NewClientPage));
         }

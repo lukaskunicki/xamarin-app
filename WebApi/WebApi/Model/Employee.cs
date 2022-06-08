@@ -16,6 +16,6 @@ namespace WebApi.Model
 
         [ForeignKey("[teamId]")]
         public int? teamId { get; set; }
-        public Team team { get; set; }
+        public virtual Team? team { get; set; }
     }
 }

@@ -3997,6 +3997,9 @@ namespace TodoList.Services.APIClient
         [System.ComponentModel.DataAnnotations.StringLength(50)]
         public string Surname { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("teamId")]
+        public int TeamId { get; set; }
+
         [Newtonsoft.Json.JsonProperty("team", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Team Team { get; set; }
 
