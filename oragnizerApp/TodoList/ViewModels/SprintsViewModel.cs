@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using TodoList.Services.APIClient;
+using TodoList.Views;
 using Xamarin.Forms;
 
 namespace TodoList.ViewModels
@@ -15,7 +16,7 @@ namespace TodoList.ViewModels
 
         public ObservableCollection<Sprint> Sprints { get; }
         public Command LoadSprintsCommand { get; }
-        public Command AddSprintsCommand { get; }
+        public Command AddSprintCommand { get; }
         public Command<Sprint> EditSprintCommand { get; }
         public Command<Sprint> DeleteSprintCommand { get; }
         public Command<Sprint> ItemTapped { get; }
@@ -27,7 +28,7 @@ namespace TodoList.ViewModels
             LoadSprintsCommand = new Command(async () => await ExecuteLoadSprintsCommand());
             ExecuteLoadSprintsCommand();
             ItemTapped = new Command<Sprint>(OnSprintselected);
-
+            AddSprintCommand = new Command(OnAddSprint);
             EditSprintCommand = new Command<Sprint>(EditSprintCommandHandler);
             DeleteSprintCommand = new Command<Sprint>(DeleteSprintCommandHandler);
         }
@@ -77,7 +78,8 @@ namespace TodoList.ViewModels
 
         private async void OnAddSprint(object obj)
         {
-            //await Shell.Current.GoToAsync(nameof(NewClientPage));
+
+            await Shell.Current.GoToAsync(nameof(NewSprintPage));
         }
 
         async void OnSprintselected(Sprint Sprint)
