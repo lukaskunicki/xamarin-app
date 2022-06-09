@@ -92,6 +92,10 @@
         <ShellContent Route="TeamsPage" ContentTemplate="{DataTemplate local:TeamsPage}" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Sprints" Icon="employee.png">
+        <ShellContent Route="SprintsPage" ContentTemplate="{DataTemplate local:SprintsPage}" />
+    </FlyoutItem>
+
     <FlyoutItem Title="Comments" Icon="comment.png">
         <ShellContent Route="CommentsPage" ContentTemplate="{DataTemplate local:CommentsPage}" />
     </FlyoutItem>

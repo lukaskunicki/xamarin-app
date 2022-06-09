@@ -78,7 +78,7 @@ namespace TodoList.ViewModels
         private async void OnAddTag(object obj)
         {
             Debug.WriteLine("fdsfdsfdsfdsfdsfdsfds");
-            await Shell.Current.GoToAsync(nameof(NewTagPage));
+          //  await Shell.Current.GoToAsync(nameof(NewTagPage));
         }
 
         async void OnTagselected(Tag Tag)
