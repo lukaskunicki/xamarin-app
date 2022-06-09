@@ -1,5 +1,4 @@
-﻿/*
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -14,7 +13,7 @@ namespace TodoList.ViewModels
     {
 
         private Tag _selectedTag;
-        private int clientId;
+        private int tagId;
         private string description;
 
         public Command SaveCommand { get; }
@@ -42,15 +41,15 @@ namespace TodoList.ViewModels
 
         public int Id { get; set; }
 
-        public int ClientId
+        public int TagId
         {
             get
             {
-                return clientId;
+                return tagId;
             }
             set
             {
-                clientId = value;
+                tagId = value;
             }
         }
 
@@ -110,7 +109,7 @@ namespace TodoList.ViewModels
             };
             try
             {
-                await _apiClient.ClientsPOSTAsync(newTag);
+                await _apiClient.TagsPOSTAsync(newTag);
             }
             catch (Exception e)
             {
@@ -124,4 +123,3 @@ namespace TodoList.ViewModels
         }
     }
 }
-*/

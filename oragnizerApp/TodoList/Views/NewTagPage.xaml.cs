@@ -15,7 +15,7 @@ namespace TodoList.Views
         public NewTagPage()
         {
             InitializeComponent();
-          //  BindingContext = new NewTagViewModel();
+            BindingContext = new NewTagViewModel();
 
         }
     }

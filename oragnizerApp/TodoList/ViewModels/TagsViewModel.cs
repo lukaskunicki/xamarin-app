@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using TodoList.Services.APIClient;
+using TodoList.Views;
 using Xamarin.Forms;
 
 namespace TodoList.ViewModels
@@ -15,7 +16,7 @@ namespace TodoList.ViewModels
 
         public ObservableCollection<Tag> Tags { get; }
         public Command LoadTagsCommand { get; }
-        public Command AddTagsCommand { get; }
+        public Command AddTagCommand { get; }
         public Command<Tag> EditTagCommand { get; }
         public Command<Tag> DeleteTagCommand { get; }
         public Command<Tag> ItemTapped { get; }
@@ -27,7 +28,7 @@ namespace TodoList.ViewModels
             LoadTagsCommand = new Command(async () => await ExecuteLoadTagsCommand());
             ExecuteLoadTagsCommand();
             ItemTapped = new Command<Tag>(OnTagselected);
-
+            AddTagCommand = new Command<Tag>(OnAddTag);
             EditTagCommand = new Command<Tag>(EditTagCommandHandler);
             DeleteTagCommand = new Command<Tag>(DeleteTagCommandHandler);
         }
@@ -77,8 +78,8 @@ namespace TodoList.ViewModels
 
         private async void OnAddTag(object obj)
         {
-            Debug.WriteLine("fdsfdsfdsfdsfdsfdsfds");
-          //  await Shell.Current.GoToAsync(nameof(NewTagPage));
+           
+         await Shell.Current.GoToAsync(nameof(NewTagPage));
         }
 
         async void OnTagselected(Tag Tag)
