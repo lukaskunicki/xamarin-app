@@ -1,6 +1,7 @@
 ﻿namespace WebApi.Model.Business
 {
-    public class Report
+    public abstract class Report
     {
+
     }
 }

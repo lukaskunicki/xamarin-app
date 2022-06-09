@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using WebApi.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using WebApi.Model.Business;
 
 namespace WebApi.DAL
 {
