@@ -13,7 +13,7 @@ namespace TodoList.ViewModels
     {
         private Team _selectedTeam;
 
-        public ObservableCollection<Team> Teams { get; }
+        public ObservableCollection<Team> Teams { get; } 
         public Command LoadTeamsCommand { get; }
         public Command AddTeamsCommand { get; }
         public Command<Team> EditTeamCommand { get; }
@@ -111,4 +111,3 @@ namespace TodoList.ViewModels
         }
     }
 }
-

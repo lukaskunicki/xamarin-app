@@ -107,7 +107,9 @@
     <Content Include="Assets\select.png" />
     <Content Include="categories.png" />
     <Content Include="clients.png" />
+    <Content Include="comment.png" />
     <Content Include="employee.png" />
+    <Content Include="hash.png" />
     <Content Include="items.png" />
     <Content Include="logout.png" />
     <Content Include="Properties\Default.rd.xml" />

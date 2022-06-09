@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoList.Views.TagsPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh" Command="{Binding LoadTeamsCommand}"/>
+        <ToolbarItem Text="Add" Command="{Binding AddTeamsCommand}"/>
+    </ContentPage.ToolbarItems>
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+    <ListView ItemsSource="{Binding Tags}" x:Name="TagsListView">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Frame OutlineColor="LightGray" Margin="10, 10, 10, 10" Padding="10, 10, 10, 10">
+                        <FlexLayout Direction="Row" x:Name="Item">
+                            <Label Text="Description:" FlexLayout.Grow="1" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Description: " />
+                                        <Span Text="{Binding Description}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Button Text="Delete" BindingContext="{Binding Source={x:Reference TagsListView}, Path=BindingContext}" Command="{Binding DeleteTagCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
+                            <Button Text="Edit" BindingContext="{Binding Source={x:Reference TagsListView}, Path=BindingContext}" Command="{Binding EditTagCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                        </FlexLayout>
+                    </Frame>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
