@@ -79,7 +79,7 @@ namespace TodoList.ViewModels
         private async void OnAddPriority(object obj)
         {
 
-           // await Shell.Current.GoToAsync(nameof(NewPriorityPage));
+            await Shell.Current.GoToAsync(nameof(NewPriorityPage));
         }
 
         async void OnPriorityselected(Priority Priority)
