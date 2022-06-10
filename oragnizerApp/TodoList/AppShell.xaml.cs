@@ -12,7 +12,7 @@ namespace TodoList
         {
             InitializeComponent();
             //Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(NewCommentPage), typeof(NewCommentPage));
             Routing.RegisterRoute(nameof(NewTagPage), typeof(NewTagPage));
             Routing.RegisterRoute(nameof(NewSprintPage), typeof(NewSprintPage));
             Routing.RegisterRoute(nameof(NewEmployeePage), typeof(NewEmployeePage));
