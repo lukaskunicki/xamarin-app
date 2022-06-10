@@ -95,7 +95,7 @@ namespace TodoList.ViewModels
             if (Priority == null)
                 return;
             // This will push the CategoryDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(ClientDetailPage)}?{nameof(ClientDetailViewModel.ClientId)}={client.ClientId}");
+            await Shell.Current.GoToAsync($"{nameof(PriorityDetailPage)}?{nameof(PriorityDetailViewModel.PriorityId)}={Priority.PriorityId}");
         }
 
         async void DeletePriorityCommandHandler(Priority Priority)
