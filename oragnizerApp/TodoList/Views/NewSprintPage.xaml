@@ -8,7 +8,6 @@
 
         <StackLayout Margin="20">
             <Label Text="New Name:" FontSize="Micro" />
-         
         </StackLayout>
 
         <StackLayout Orientation="Horizontal" Margin="15">
