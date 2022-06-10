@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using TodoList.Services.APIClient;
+using TodoList.Views;
 using Xamarin.Forms;
 
 namespace TodoList.ViewModels
@@ -15,7 +16,7 @@ namespace TodoList.ViewModels
 
         public ObservableCollection<Team> Teams { get; } 
         public Command LoadTeamsCommand { get; }
-        public Command AddTeamsCommand { get; }
+        public Command AddTeamCommand { get; }
         public Command<Team> EditTeamCommand { get; }
         public Command<Team> DeleteTeamCommand { get; }
         public Command<Team> ItemTapped { get; }
@@ -27,7 +28,7 @@ namespace TodoList.ViewModels
             LoadTeamsCommand = new Command(async () => await ExecuteLoadTeamsCommand());
             ExecuteLoadTeamsCommand();
             ItemTapped = new Command<Team>(OnTeamselected);
-
+            AddTeamCommand = new Command(OnAddTeam);
             EditTeamCommand = new Command<Team>(EditTeamCommandHandler);
             DeleteTeamCommand = new Command<Team>(DeleteTeamCommandHandler);
         }
@@ -77,7 +78,7 @@ namespace TodoList.ViewModels
 
         private async void OnAddTeam(object obj)
         {
-            //await Shell.Current.GoToAsync(nameof(NewClientPage));
+            await Shell.Current.GoToAsync(nameof(NewTeamPage));
         }
 
         async void OnTeamselected(Team Team)

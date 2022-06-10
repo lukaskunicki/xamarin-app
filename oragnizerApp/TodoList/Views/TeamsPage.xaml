@@ -7,7 +7,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Refresh" Command="{Binding LoadTeamsCommand}"/>
-        <ToolbarItem Text="Add" Command="{Binding AddTeamsCommand}"/>
+        <ToolbarItem Text="Add" Command="{Binding AddTeamCommand}"/>
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.

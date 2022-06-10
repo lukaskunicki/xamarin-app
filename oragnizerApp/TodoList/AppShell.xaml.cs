@@ -11,6 +11,7 @@ namespace TodoList
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(NewTeamPage), typeof(NewTeamPage));
             Routing.RegisterRoute(nameof(NewPriorityPage), typeof(NewPriorityPage));
             Routing.RegisterRoute(nameof(NewCommentPage), typeof(NewCommentPage));
             Routing.RegisterRoute(nameof(NewTagPage), typeof(NewTagPage));
