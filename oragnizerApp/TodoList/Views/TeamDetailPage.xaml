@@ -12,12 +12,12 @@
                 <Label Text="Team name:" FontSize="Micro" />
                 <Label Text="{Binding TeamName}"  FontSize="Micro" TextColor="#000"/>
                 <Label Text="Team description:" FontSize="Micro" />
-                <Label Text="{Binding teamDescription}"  FontSize="Micro" TextColor="#000"/>
+                <Label Text="{Binding TeamDescription}"  FontSize="Micro" TextColor="#000"/>
                 <StackLayout Margin="20">
                     <Label Text="New team name:" FontSize="Micro" />
                     <Entry Text="{Binding TeamName, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
                     <Label Text="New team description::" FontSize="Micro" />
-                    <Entry Text="{Binding teamDescription, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
+                    <Entry Text="{Binding TeamDescription, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
                 </StackLayout>
             </StackLayout>
         </Frame>
