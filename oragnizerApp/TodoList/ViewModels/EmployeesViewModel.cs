@@ -96,7 +96,7 @@ namespace TodoList.ViewModels
             if (employee == null)
                 return;
             // This will push the CategoryDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(ClientDetailPage)}?{nameof(ClientDetailViewModel.ClientId)}={client.ClientId}");
+            await Shell.Current.GoToAsync($"{nameof(EmployeeDetailPage)}?{nameof(EmployeeDetailViewModel.EmployeeId)}={employee.EmployeeId}");
         }
 
         async void DeleteEmployeeCommandHandler(Employee employee)
