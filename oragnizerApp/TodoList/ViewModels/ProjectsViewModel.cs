@@ -79,7 +79,7 @@ namespace TodoList.ViewModels
         private async void OnAddProject(object obj)
         {
 
-           // await Shell.Current.GoToAsync(nameof(NewProjectPage));
+            await Shell.Current.GoToAsync(nameof(NewProjectPage));
         }
 
         async void OnProjectselected(Project Project)

@@ -7,7 +7,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Refresh" Command="{Binding LoadProjectsCommand}"/>
-        <ToolbarItem Text="Add" Command="{Binding AddProjectsCommand}"/>
+        <ToolbarItem Text="Add" Command="{Binding AddProjectCommand}"/>
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
@@ -39,15 +39,25 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="End Time: " />
-                                        <Span Text="{Binding EndTime}"/>
+                                        <Span Text="{Binding EndTime, StringFormat='{}{0:MM/dd/yyyy a\\t h:mm tt}'}"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
                             <Label Text="Description:" FlexLayout.Grow="1" >
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="End Time: " />
-                                        <Span Text="{Binding ProjectManageremployeeId.Surname}"/>
+                                        <Span Text="Project menager: " />
+                                        <Span Text="{Binding ProjectManager.Surname}"/>
+                                        <Span Text=" "/>
+                                        <Span Text="{Binding ProjectManager.Name}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="Description:" FlexLayout.Grow="1" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Client: " />
+                                        <Span Text="{Binding Client.Description}"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>

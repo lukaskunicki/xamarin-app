@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoList.Views.NewProjectPage"
+             Title="Add a new project">
+
+    <StackLayout Spacing="20" Padding="15">
+
+        <StackLayout Margin="20">
+            <Label Text="New Name:" FontSize="Micro" />
+            <Entry Text="{Binding Name, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
+            <Picker 
+                Title="Responsible Employee" 
+                ItemsSource="{Binding Employees}"  
+                ItemDisplayBinding="{Binding Surname}"
+                SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
+                />
+            <Picker 
+                Title="Clients" 
+                ItemsSource="{Binding Clients}"  
+                ItemDisplayBinding="{Binding Description}"
+                SelectedItem="{Binding SelectedClient, Mode=TwoWay}"
+                />
+
+
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Margin="15">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" TextColor="#fff"></Button>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
