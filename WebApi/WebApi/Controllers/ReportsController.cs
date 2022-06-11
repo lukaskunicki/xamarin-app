@@ -26,6 +26,12 @@ namespace WebApi.Controllers
             _context = context;
             _mapper = mapper;
         }
+        [HttpGet(Name = "Report")]
+
+        public int Get()
+        {
+            return 0;
+        }
 
         // GET: api/Reports/5
         [HttpGet("{id}")]
