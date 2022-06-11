@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TodoList.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,7 +15,7 @@ namespace TodoList.Views
         public NewCommentPage()
         {
             InitializeComponent();
-           /* BindingContext = new NewNewCommentModel();*/
+            BindingContext = new NewCommentViewModel();
 
         }
     }

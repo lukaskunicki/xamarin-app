@@ -4070,6 +4070,8 @@ namespace TodoList.Services.APIClient
 
         [Newtonsoft.Json.JsonProperty("assignedEmployee", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Employee AssignedEmployee { get; set; }
+        [Newtonsoft.Json.JsonProperty("ResponsibleEmployeeemployeeId")]
+        public int AssignedEmployeeemployeeId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("created", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Created { get; set; }
