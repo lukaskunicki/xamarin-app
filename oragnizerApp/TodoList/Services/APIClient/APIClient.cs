@@ -4131,6 +4131,12 @@ namespace TodoList.Services.APIClient
         [Newtonsoft.Json.JsonProperty("client", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Client Client { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("clientId")]
+        public int ClientId { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("projectManageremployeeId")]
+        public int projectManageremployeeId { get; set; }
+
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.5.0 (NJsonSchema v10.6.6.0 (Newtonsoft.Json v11.0.0.0))")]
