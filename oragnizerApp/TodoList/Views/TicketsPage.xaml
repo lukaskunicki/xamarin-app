@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TodoList.Views.TeamsPage"
+             x:Class="TodoList.Views.TicketsPage"
              Title="{Binding Title}"
-             x:Name="BrowseTeamsPage">
+             x:Name="BrowseTicketsPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Refresh" Command="{Binding LoadTeamsCommand}"/>
-        <ToolbarItem Text="Add" Command="{Binding AddTeamCommand}"/>
+        <ToolbarItem Text="Refresh" Command="{Binding LoadTicketsCommand}"/>
+        <ToolbarItem Text="Add" Command="{Binding AddTicketsCommand}"/>
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <ListView ItemsSource="{Binding Teams}" x:Name="TeamsListView">
+    <ListView ItemsSource="{Binding Tickets}" x:Name="TicketsListView">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
@@ -22,21 +22,21 @@
                             <Label Text="Name:" FlexLayout.Grow="1" >
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="Name: " />
-                                        <Span Text="{Binding TeamName}" />
+                                        <Span Text="Start Time: " />
+                                        <Span Text="{Binding Title}" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label Text="Description:" FlexLayout.Grow="1" >
+                            <Label Text="Name:" FlexLayout.Grow="1" >
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="Description: " />
-                                        <Span Text="{Binding TeamDescription}"/>
+                                        <Span Text="Start Time: " />
+                                        <Span Text="{Binding Created}" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Button Text="Delete" BindingContext="{Binding Source={x:Reference TeamsListView}, Path=BindingContext}" Command="{Binding DeleteTeamCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
-                            <Button Text="Edit" BindingContext="{Binding Source={x:Reference TeamsListView}, Path=BindingContext}" Command="{Binding EditTeamCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                            <Button Text="Delete" BindingContext="{Binding Source={x:Reference TicketsListView}, Path=BindingContext}" Command="{Binding DeleteTicketsCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
+                            <Button Text="Edit" BindingContext="{Binding Source={x:Reference TicketsListView}, Path=BindingContext}" Command="{Binding EditTicketsCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
                         </FlexLayout>
                     </Frame>
                 </ViewCell>

@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TodoList.Views.TagsPage">
+             x:Class="TodoList.Views.PrioritiesPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Refresh" Command="{Binding LoadTagsCommand}"/>
-        <ToolbarItem Text="Add" Command="{Binding AddTagCommand}"/>
+        <ToolbarItem Text="Refresh" Command="{Binding LoadPrioritiesCommand}"/>
+        <ToolbarItem Text="Add" Command="{Binding AddPriorityCommand}"/>
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <ListView ItemsSource="{Binding Tags}" x:Name="TagsListView">
+    <ListView ItemsSource="{Binding Priorities}" x:Name="PrioritiesListView">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
@@ -19,13 +19,13 @@
                             <Label Text="Description:" FlexLayout.Grow="1" >
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="Description: " />
-                                        <Span Text="{Binding Description}"/>
+                                        <Span Text="Name: " />
+                                        <Span Text="{Binding Name}"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Button Text="Delete" BindingContext="{Binding Source={x:Reference TagsListView}, Path=BindingContext}" Command="{Binding DeleteTagCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
-                            <Button Text="Edit" BindingContext="{Binding Source={x:Reference TagsListView}, Path=BindingContext}" Command="{Binding EditTagCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                            <Button Text="Delete" BindingContext="{Binding Source={x:Reference PrioritiesListView}, Path=BindingContext}" Command="{Binding DeletePriorityCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
+                            <Button Text="Edit" BindingContext="{Binding Source={x:Reference PrioritiesListView}, Path=BindingContext}" Command="{Binding EditPriorityCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
                         </FlexLayout>
                     </Frame>
                 </ViewCell>

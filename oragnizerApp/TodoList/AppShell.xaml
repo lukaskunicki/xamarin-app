@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:TodoList.Views"
        Title="TodoList"
@@ -7,7 +7,7 @@
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
-    
+
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
 
@@ -73,14 +73,24 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <!-- 
+    <!--
         When the Flyout is visible this defines the content to display in the flyout.
-        FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
+        FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
 
+
+
     <FlyoutItem Title="Clients" Icon="clients.png">
         <ShellContent Route="ClientsPage" ContentTemplate="{DataTemplate local:ClientsPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Tickets" Icon="hash.png">
+        <ShellContent Route="TicketsPage" ContentTemplate="{DataTemplate local:TicketsPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Projects" Icon="hash.png">
+        <ShellContent Route="ProjectsPage" ContentTemplate="{DataTemplate local:ProjectsPage}" />
     </FlyoutItem>
 
 
@@ -107,11 +117,15 @@
     <FlyoutItem Title="Reports" Icon="hash.png">
         <ShellContent Route="ReportsPage" ContentTemplate="{DataTemplate local:ReportsPage}" />
     </FlyoutItem>
+
+    <FlyoutItem Title="Priorities" Icon="hash.png">
+        <ShellContent Route="PrioritiesPage" ContentTemplate="{DataTemplate local:PrioritiesPage}" />
+    </FlyoutItem>
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked" IconImageSource="logout.png">
     </MenuItem>
 
-    <!-- Optional Templates 
+    <!-- Optional Templates
     // These may be provided inline as below or as separate classes.
 
     // This header appears at the top of the Flyout.

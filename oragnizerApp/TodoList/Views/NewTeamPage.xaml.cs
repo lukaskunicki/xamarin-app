@@ -10,13 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace TodoList.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewTagPage : ContentPage
+    public partial class NewTeamPage : ContentPage
     {
-        public NewTagPage()
+        public NewTeamPage()
         {
             InitializeComponent();
-            BindingContext = new NewTagViewModel();
-
+            BindingContext = new NewTeamViewModel();
         }
     }
 }

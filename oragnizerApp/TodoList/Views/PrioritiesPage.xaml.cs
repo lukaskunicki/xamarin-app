@@ -10,13 +10,19 @@ using Xamarin.Forms.Xaml;
 namespace TodoList.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewTagPage : ContentPage
+    public partial class PrioritiesPage : ContentPage
     {
-        public NewTagPage()
+        PrioritiesViewModel _viewModel;
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _viewModel.OnAppearing();
+        }
+        public PrioritiesPage()
         {
             InitializeComponent();
-            BindingContext = new NewTagViewModel();
-
+            BindingContext = _viewModel = new PrioritiesViewModel();
         }
     }
 }

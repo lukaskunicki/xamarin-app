@@ -11,13 +11,18 @@ namespace TodoList
         public AppShell()
         {
             InitializeComponent();
-            //Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
-            //Routing.RegisterRoute(nameof(NewCategoryPage), typeof(NewCategoryPage));
-            //Routing.RegisterRoute(nameof(NewServicemanPage), typeof(NewServicemanPage));
+            Routing.RegisterRoute(nameof(NewTeamPage), typeof(NewTeamPage));
+            Routing.RegisterRoute(nameof(NewPriorityPage), typeof(NewPriorityPage));
+            Routing.RegisterRoute(nameof(NewCommentPage), typeof(NewCommentPage));
+            Routing.RegisterRoute(nameof(NewTagPage), typeof(NewTagPage));
+            Routing.RegisterRoute(nameof(NewSprintPage), typeof(NewSprintPage));
             Routing.RegisterRoute(nameof(NewEmployeePage), typeof(NewEmployeePage));
-            Routing.RegisterRoute(nameof(ClientDetailPage), typeof(ClientDetailPage));
             Routing.RegisterRoute(nameof(NewClientPage), typeof(NewClientPage));
+            Routing.RegisterRoute(nameof(TagDetailPage), typeof(TagDetailPage));
+            Routing.RegisterRoute(nameof(PriorityDetailPage), typeof(PriorityDetailPage));
+            Routing.RegisterRoute(nameof(ClientDetailPage), typeof(ClientDetailPage));
+            Routing.RegisterRoute(nameof(TeamDetailPage), typeof(TeamDetailPage));
+
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

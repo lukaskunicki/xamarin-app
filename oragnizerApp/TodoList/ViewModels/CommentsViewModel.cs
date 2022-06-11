@@ -79,7 +79,6 @@ namespace TodoList.ViewModels
 
         private async void OnAddComment(object obj)
         {
-            Debug.WriteLine("fdsfdsfdsfdsfdsfdsfds");
             await Shell.Current.GoToAsync(nameof(NewCommentPage));
         }
 

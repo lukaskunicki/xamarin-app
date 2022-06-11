@@ -1,14 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TodoList.Views.NewTagPage"
-             Title="Add a new Tag">
+             x:Class="TodoList.Views.NewSprintPage"
+             Title="Add a new Sprint">
 
     <StackLayout Spacing="20" Padding="15">
 
         <StackLayout Margin="20">
-            <Label Text="New Tag:" FontSize="Micro" />
-            <Entry Text="{Binding Description, Mode=TwoWay}"  Grid.Column="1" Placeholder="Description" FontSize="Micro" />
+            <Label Text="New Name:" FontSize="Micro" />
         </StackLayout>
 
         <StackLayout Orientation="Horizontal" Margin="15">

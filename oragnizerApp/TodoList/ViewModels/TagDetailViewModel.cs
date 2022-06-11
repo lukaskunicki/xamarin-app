@@ -9,20 +9,19 @@ using Xamarin.Forms;
 
 namespace TodoList.ViewModels
 {
-    public class NewTagViewModel : BaseDataViewModel<APIClient>
+    [QueryProperty(nameof(TagId), nameof(TagId))]
+    public class TagDetailViewModel : BaseDataViewModel<APIClient>
     {
 
-        private Tag _selectedTag;
-        private int tagId;
         private string description;
-
+        private int tagId;
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
         public ObservableCollection<Tag> Tags { get; }
         public Command LoadTagsCommand { get; }
 
-        public NewTagViewModel()
+        public TagDetailViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
@@ -50,6 +49,7 @@ namespace TodoList.ViewModels
             set
             {
                 tagId = value;
+                LoadItemId(value);
             }
         }
 
@@ -58,7 +58,6 @@ namespace TodoList.ViewModels
             get => description;
             set => SetProperty(ref description, value);
         }
-
         async Task ExecuteLoadTagsCommand()
         {
             IsBusy = true;
@@ -86,15 +85,23 @@ namespace TodoList.ViewModels
             }
         }
 
-        public Tag SelectedTag
+        public async void LoadItemId(int itemId)
         {
-            get => _selectedTag;
-            set
+            try
             {
-                SetProperty(ref _selectedTag, value);
+                var tag = await _apiClient.TagsGETAsync(itemId);
+
+                if (tag != null)
+                {
+                    this.Id = tag.TagId;
+                    this.Description = tag.Description;
+                }
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Failed to Load Serviceman");
             }
         }
-
         private async void OnCancel()
         {
             await Shell.Current.GoToAsync("..");
@@ -104,12 +111,12 @@ namespace TodoList.ViewModels
         {
             Tag newTag = new Tag()
             {
-                TagId = tagId,
+                TagId = TagId,
                 Description = description,
             };
             try
             {
-                await _apiClient.TagsPOSTAsync(newTag);
+                await _apiClient.TagsPUTAsync(newTag.TagId, newTag);
             }
             catch (Exception e)
             {
@@ -119,6 +126,7 @@ namespace TodoList.ViewModels
             {
                 await Shell.Current.GoToAsync("..");
             }
+
             // This will pop the current page off the navigation stack
         }
     }
