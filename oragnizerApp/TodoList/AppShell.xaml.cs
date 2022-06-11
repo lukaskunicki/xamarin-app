@@ -23,6 +23,7 @@ namespace TodoList
             Routing.RegisterRoute(nameof(PriorityDetailPage), typeof(PriorityDetailPage));
             Routing.RegisterRoute(nameof(ClientDetailPage), typeof(ClientDetailPage));
             Routing.RegisterRoute(nameof(TeamDetailPage), typeof(TeamDetailPage));
+            Routing.RegisterRoute(nameof(CommentDetailPage), typeof(CommentDetailPage));
 
         }
 

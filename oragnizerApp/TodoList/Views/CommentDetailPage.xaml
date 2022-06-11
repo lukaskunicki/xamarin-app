@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoList.Views.CommentDetailPage"
+             Title="Add a new comment">
+
+    <StackLayout Spacing="20" Padding="15">
+
+        <StackLayout Margin="20">
+            <Label Text="Content:" FontSize="Micro" />
+            <Entry Text="{Binding Content, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
+            <Picker 
+                Title="Assigned Employee" 
+                ItemsSource="{Binding Employees}"  
+                ItemDisplayBinding="{Binding Surname}"
+                SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
+                />
+
+            <DatePicker Date="{Binding Created}"
+                        MinimumDate="{x:Static system:DateTime.Today}"/>
+
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Margin="15">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" TextColor="#fff"></Button>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
