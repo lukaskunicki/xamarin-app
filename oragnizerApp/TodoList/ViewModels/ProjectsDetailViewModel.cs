@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace TodoList.ViewModels
 {
-    public class NewProjectViewModel : BaseDataViewModel<APIClient>
+    public class ProjectDetailViewModel : BaseDataViewModel<APIClient>
     {
 
         private Employee _selectedEmployee;
@@ -27,7 +27,7 @@ namespace TodoList.ViewModels
         public Command LoadEmployeesCommand { get; }
         public Command LoadClientsCommand { get; }
 
-        public NewProjectViewModel()
+        public ProjectDetailViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
@@ -114,7 +114,7 @@ namespace TodoList.ViewModels
 
                 foreach (var client in clients)
                 {
-                  
+
                     if (!Clients.Contains(client))
                     {
                         Clients.Add(client);
@@ -157,6 +157,7 @@ namespace TodoList.ViewModels
         {
             Project newProject = new Project()
             {
+                ProjectId = projectId,
                 Name = name,
                 StartTime = startTime,
                 EndTime = endTime,
@@ -166,7 +167,7 @@ namespace TodoList.ViewModels
             };
             try
             {
-                await _apiClient.ProjectsPOSTAsync(newProject);
+                await _apiClient.ProjectsPUTAsync(newProject.ProjectId, newProject);
             }
             catch (Exception e)
             {
@@ -176,6 +177,7 @@ namespace TodoList.ViewModels
             {
                 await Shell.Current.GoToAsync("..");
             }
+
             // This will pop the current page off the navigation stack
         }
     }
