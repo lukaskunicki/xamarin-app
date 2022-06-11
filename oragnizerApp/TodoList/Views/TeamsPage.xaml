@@ -35,8 +35,8 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Button Text="Delete" BindingContext="{Binding Source={x:Reference TeamsListView}, Path=BindingContext}" Command="{Binding DeleteEmployeeCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
-                            <Button Text="Edit" BindingContext="{Binding Source={x:Reference TeamsListView}, Path=BindingContext}" Command="{Binding EditEmployeeCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                            <Button Text="Delete" BindingContext="{Binding Source={x:Reference TeamsListView}, Path=BindingContext}" Command="{Binding DeleteTeamCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
+                            <Button Text="Edit" BindingContext="{Binding Source={x:Reference TeamsListView}, Path=BindingContext}" Command="{Binding EditTeamCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
                         </FlexLayout>
                     </Frame>
                 </ViewCell>

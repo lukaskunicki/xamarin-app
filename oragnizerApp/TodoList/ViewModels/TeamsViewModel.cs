@@ -94,7 +94,7 @@ namespace TodoList.ViewModels
             if (Team == null)
                 return;
             // This will push the CategoryDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(ClientDetailPage)}?{nameof(ClientDetailViewModel.ClientId)}={client.ClientId}");
+            await Shell.Current.GoToAsync($"{nameof(TeamDetailPage)}?{nameof(TeamDetailViewModel.TeamId)}={Team.TeamId}");
         }
 
         async void DeleteTeamCommandHandler(Team Team)

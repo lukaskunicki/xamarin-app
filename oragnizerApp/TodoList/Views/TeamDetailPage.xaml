@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoList.Views.TeamDetailPage"
+            
+             Title="Edit Team">
+
+    <StackLayout Spacing="20" Padding="15">
+        <Frame OutlineColor="LightGray">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <Label Text="Team name:" FontSize="Micro" />
+                <Label Text="{Binding TeamName}"  FontSize="Micro" TextColor="#000"/>
+                <Label Text="Team description:" FontSize="Micro" />
+                <Label Text="{Binding teamDescription}"  FontSize="Micro" TextColor="#000"/>
+                <StackLayout Margin="20">
+                    <Label Text="New team name:" FontSize="Micro" />
+                    <Entry Text="{Binding TeamName, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
+                    <Label Text="New team description::" FontSize="Micro" />
+                    <Entry Text="{Binding teamDescription, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+        <StackLayout Orientation="Horizontal" Margin="15">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" TextColor="#fff"></Button>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
