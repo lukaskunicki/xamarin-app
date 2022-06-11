@@ -79,7 +79,7 @@ namespace TodoList.ViewModels
         private async void OnAddTicket(object obj)
         {
 
-            // await Shell.Current.GoToAsync(nameof(NewTicketPage));
+            await Shell.Current.GoToAsync(nameof(NewTicketPage));
         }
 
         async void OnTicketselected(Ticket Ticket)
@@ -95,7 +95,7 @@ namespace TodoList.ViewModels
             if (Ticket == null)
                 return;
             // This will push the CategoryDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(ClientDetailPage)}?{nameof(ClientDetailViewModel.ClientId)}={client.ClientId}");
+            await Shell.Current.GoToAsync($"{nameof(TicketDetailPage)}?{nameof(TicketDetailViewModel.TicketId)}={Ticket.TicketId}");
         }
 
         async void DeleteTicketCommandHandler(Ticket Ticket)
