@@ -4070,8 +4070,10 @@ namespace TodoList.Services.APIClient
 
         [Newtonsoft.Json.JsonProperty("assignedEmployee", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Employee AssignedEmployee { get; set; }
-        [Newtonsoft.Json.JsonProperty("ResponsibleEmployeeemployeeId")]
+
+        [Newtonsoft.Json.JsonProperty("assignedEmployeeemployeeId")]
         public int AssignedEmployeeemployeeId { get; set; }
+        
 
         [Newtonsoft.Json.JsonProperty("created", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Created { get; set; }
@@ -4121,17 +4123,11 @@ namespace TodoList.Services.APIClient
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("projectManager", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Employee ProjectManager { get; set; }
-
         [Newtonsoft.Json.JsonProperty("startTime", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset StartTime { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endTime", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset EndTime { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("client", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public Client Client { get; set; }
 
         [Newtonsoft.Json.JsonProperty("clientId")]
         public int ClientId { get; set; }
