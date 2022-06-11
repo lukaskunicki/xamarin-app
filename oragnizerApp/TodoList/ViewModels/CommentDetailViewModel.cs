@@ -130,6 +130,7 @@ namespace TodoList.ViewModels
             Comment newComment = new Comment()
             {
                 CommentId = commentId,
+                Created = created,
                 Content = content,
                 AssignedEmployeeemployeeId = _selectedEmployee.EmployeeId,
             };
