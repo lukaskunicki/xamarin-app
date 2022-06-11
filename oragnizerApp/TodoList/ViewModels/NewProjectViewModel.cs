@@ -66,6 +66,16 @@ namespace TodoList.ViewModels
             get => name;
             set => SetProperty(ref name, value);
         }
+        public DateTime StartTime
+        {
+            get => startTime;
+            set => SetProperty(ref startTime, value);
+        }
+        public DateTime EndTime
+        {
+            get => endTime;
+            set => SetProperty(ref endTime, value);
+        }
 
         async Task ExecuteLoadEmployeesCommand()
         {
@@ -149,8 +159,11 @@ namespace TodoList.ViewModels
             {
                 ProjectId = projectId,
                 Name = name,
+                StartTime = startTime,
+                EndTime = endTime,
                 projectManageremployeeId = _selectedEmployee.EmployeeId,
                 ClientId = _selectedClient.ClientId,
+
             };
             try
             {
