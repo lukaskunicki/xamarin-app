@@ -95,7 +95,7 @@ namespace TodoList.ViewModels
             if (Tag == null)
                 return;
             // This will push the CategoryDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(ClientDetailPage)}?{nameof(ClientDetailViewModel.ClientId)}={client.ClientId}");
+            await Shell.Current.GoToAsync($"{nameof(TagDetailPage)}?{nameof(TagDetailViewModel.TagId)}={Tag.TagId}");
         }
 
         async void DeleteTagCommandHandler(Tag Tag)
