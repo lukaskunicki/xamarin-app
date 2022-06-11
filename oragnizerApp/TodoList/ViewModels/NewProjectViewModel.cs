@@ -23,7 +23,7 @@ namespace TodoList.ViewModels
         public Command CancelCommand { get; }
 
         public ObservableCollection<Employee> Employees { get; }
-        private ObservableCollection<Client> Clients;
+        public ObservableCollection<Client> Clients { get; }
         public Command LoadEmployeesCommand { get; }
         public Command LoadClientsCommand { get; }
 
@@ -99,11 +99,12 @@ namespace TodoList.ViewModels
 
             try
             {
-                Employees.Clear();
+                Clients.Clear();
                 var clients = await _apiClient.ClientsAllAsync();
 
                 foreach (var client in clients)
                 {
+                    Debug.WriteLine(client);
                     if (!Clients.Contains(client))
                     {
                         Clients.Add(client);

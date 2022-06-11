@@ -10,12 +10,16 @@
             <Label Text="New Name:" FontSize="Micro" />
             <Entry Text="{Binding Name, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
             <Picker 
+                TitleColor="Black"
+                TextColor="Black"
                 Title="Responsible Employee" 
                 ItemsSource="{Binding Employees}"  
                 ItemDisplayBinding="{Binding Surname}"
                 SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
                 />
             <Picker 
+                TitleColor="Black"
+                TextColor="Black"
                 Title="Clients" 
                 ItemsSource="{Binding Clients}"  
                 ItemDisplayBinding="{Binding Description}"

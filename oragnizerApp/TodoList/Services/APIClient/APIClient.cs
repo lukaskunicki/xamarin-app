@@ -4202,6 +4202,17 @@ namespace TodoList.Services.APIClient
         [Newtonsoft.Json.JsonProperty("created", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset Created { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("priorityId")]
+        public int PriorityId { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("assignedEmployeeemployeeId")]
+        public int AssignedEmployeeemployeeId { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("reporteremployeeId")]
+        public int ReporteremployeeId { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("sprintId")]
+        public int SprintId { get; set; }
     }
 
 
