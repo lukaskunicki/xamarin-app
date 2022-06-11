@@ -15,13 +15,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="75" />
             <RowDefinition Height="20" />
-            <RowDefinition Height="250" />
+            <RowDefinition Height="220" />
             <RowDefinition Height="20" />
             <RowDefinition Height="250" />
         </Grid.RowDefinitions>
-        <FlexLayout  Grid.Row="1" Margin="10" Direction="Row">
-            <Label Text="Reports:" />
-        </FlexLayout>
+        <Label Grid.Row="1" Text="Reports:" />
         <ListView Grid.Row="2" ItemsSource="{Binding Reports}" x:Name="ReportsListView">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -36,7 +34,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ListView Grid.Row="2" ItemsSource="{Binding Tickets}" x:Name="TicketsListView">
+        <Label Grid.Row="3" Text="Tickets:" />
+        <ListView Grid.Row="4" ItemsSource="{Binding Tickets}" x:Name="TicketsListView">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
