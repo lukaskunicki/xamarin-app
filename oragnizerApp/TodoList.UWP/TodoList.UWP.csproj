@@ -107,6 +107,7 @@
     <Content Include="add-free-icon-font.png" />
     <Content Include="address-book-free-icon-font.png" />
     <Content Include="Assets\select.png" />
+    <Content Include="categories.png" />
     <Content Include="clients.png" />
     <Content Include="comment-alt-free-icon-font.png" />
     <Content Include="comment.png" />
