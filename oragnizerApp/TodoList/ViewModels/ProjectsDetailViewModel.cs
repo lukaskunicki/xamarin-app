@@ -9,6 +9,8 @@ using Xamarin.Forms;
 
 namespace TodoList.ViewModels
 {
+    [QueryProperty(nameof(ProjectId), nameof(ProjectId))]
+
     public class ProjectDetailViewModel : BaseDataViewModel<APIClient>
     {
 
@@ -58,6 +60,7 @@ namespace TodoList.ViewModels
             set
             {
                 projectId = value;
+                LoadItemId(value);
             }
         }
 
@@ -145,6 +148,26 @@ namespace TodoList.ViewModels
             set
             {
                 SetProperty(ref _selectedClient, value);
+            }
+        }
+
+        public async void LoadItemId(int itemId)
+        {
+            try
+            {
+                var project = await _apiClient.ProjectsGETAsync(itemId);
+
+                if (project != null)
+                {
+                    this.ProjectId = project.ProjectId;
+                    this.Name = project.Name;
+                    this.StartTime = project.StartTime;
+                    this.EndTime = project.EndTime;
+                }
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Failed to Load Project");
             }
         }
 
