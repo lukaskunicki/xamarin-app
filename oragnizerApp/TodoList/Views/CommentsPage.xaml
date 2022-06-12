@@ -27,7 +27,7 @@
                                 </Label.FormattedText>
                             </Label>
 
-                            <Label Text="{Binding Created}" FlexLayout.Grow="1"  TextColor="blue" />
+                            <Label Text="{Binding Created, StringFormat='{}{0:MM/dd/yyyy}'}" FlexLayout.Grow="1"  TextColor="blue"  />
                             
                             <Button Text="Delete" BindingContext="{Binding Source={x:Reference CommentsListView}, Path=BindingContext}" Command="{Binding DeleteCommentCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
                             <Button Text="Edit" BindingContext="{Binding Source={x:Reference CommentsListView}, Path=BindingContext}" Command="{Binding EditCommentCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>

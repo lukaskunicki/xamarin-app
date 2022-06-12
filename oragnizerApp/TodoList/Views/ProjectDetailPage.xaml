@@ -28,7 +28,7 @@
             <StackLayout Margin="20">
                 <Label Text="Pick start date:" FontSize="Micro" />
                 <DatePicker 
-                Date="{Binding StartTime}"
+                Date="{Binding StartTime, StringFormat='{}{0:MM/dd/yyyy}'}"
                 MinimumDate="01/01/2010" />
             </StackLayout>
 
@@ -36,7 +36,7 @@
             <StackLayout Margin="20">
                 <Label Text="Pick end date:" FontSize="Micro" />
                 <DatePicker 
-                Date="{Binding EndTime}"
+                Date="{Binding EndTime, StringFormat='{}{0:MM/dd/yyyy}'}"
                 MinimumDate="01/01/2010" />
             </StackLayout>
 

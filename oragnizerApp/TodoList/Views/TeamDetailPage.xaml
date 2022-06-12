@@ -10,15 +10,13 @@
             <StackLayout Orientation="Horizontal"
                          Spacing="15">
                 <Label Text="Team name:" FontSize="Micro" />
-                <Label Text="{Binding TeamName}"  FontSize="Micro" TextColor="#000"/>
-                <Label Text="Team description:" FontSize="Micro" />
-                <Label Text="{Binding TeamDescription}"  FontSize="Micro" TextColor="#000"/>
-                <StackLayout Margin="20">
-                    <Label Text="New team name:" FontSize="Micro" />
+                <Label Text="{Binding TeamName}"  FontSize="Micro" TextColor="#000" LineBreakMode="WordWrap"/>
+                <Label Text="Team description:" FontSize="Micro" LineBreakMode="WordWrap" />
+                <Label Text="{Binding TeamDescription}"  FontSize="Micro" TextColor="#000" LineBreakMode="WordWrap"/>
+                <Label Text="New team name:" FontSize="Micro" LineBreakMode="WordWrap" />
                     <Entry Text="{Binding TeamName, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
                     <Label Text="New team description::" FontSize="Micro" />
-                    <Entry Text="{Binding TeamDescription, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
-                </StackLayout>
+                <Entry Text="{Binding TeamDescription, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro"/>
             </StackLayout>
         </Frame>
         <StackLayout Orientation="Horizontal" Margin="15">

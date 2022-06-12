@@ -49,7 +49,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Created: " />
-                                        <Span Text="{Binding Created}" />
+                                        <Span Text="{Binding Created, StringFormat='{}{0:MM/dd/yyyy}'}" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
@@ -63,13 +63,14 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label FlexLayout.Grow="1" LineBreakMode="NoWrap" Padding="20">
+                            <Label FlexLayout.Grow="1" LineBreakMode="WordWrap" Padding="20">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Sprint: " />
-                                        <Span Text="{Binding Sprint.StartTime}" TextColor="Green" />
-                                        <Span Text=" do " />
-                                        <Span Text="{Binding Sprint.EndTime}" TextColor="red" />
+                                        <Span Text="{Binding Sprint.StartTime, StringFormat='{}{0:MM/dd/yyyy}'}" TextColor="Green" />
+                                        <Span>; </Span>
+                                        <Span Text="&#x0a;Do " />
+                                        <Span Text="{Binding Sprint.EndTime, StringFormat='{}{0:MM/dd/yyyy}'}" TextColor="red" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
