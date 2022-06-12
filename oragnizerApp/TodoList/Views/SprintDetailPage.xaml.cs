@@ -10,13 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace TodoList.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewCommentPage : ContentPage
+    public partial class SprintDetailPage : ContentPage
     {
-        public NewCommentPage()
+        public SprintDetailPage()
         {
             InitializeComponent();
-            BindingContext = new NewCommentViewModel();
-
+            BindingContext = new SprintDetailViewModel();
         }
     }
 }

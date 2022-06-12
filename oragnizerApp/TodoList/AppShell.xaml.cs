@@ -23,7 +23,12 @@ namespace TodoList
             Routing.RegisterRoute(nameof(TagDetailPage), typeof(TagDetailPage));
             Routing.RegisterRoute(nameof(PriorityDetailPage), typeof(PriorityDetailPage));
             Routing.RegisterRoute(nameof(ClientDetailPage), typeof(ClientDetailPage));
+            Routing.RegisterRoute(nameof(EmployeeDetailPage), typeof(EmployeeDetailPage));
+            Routing.RegisterRoute(nameof(ProjectDetailPage), typeof(ProjectDetailPage));
+            Routing.RegisterRoute(nameof(TicketDetailPage), typeof(TicketDetailPage));
+            Routing.RegisterRoute(nameof(SprintDetailPage), typeof(SprintDetailPage));
             Routing.RegisterRoute(nameof(TeamDetailPage), typeof(TeamDetailPage));
+            Routing.RegisterRoute(nameof(CommentDetailPage), typeof(CommentDetailPage));
 
         }
 

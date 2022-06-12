@@ -95,7 +95,7 @@ namespace TodoList.ViewModels
             if (comment == null)
                 return;
             // This will push the CategoryDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(ClientDetailPage)}?{nameof(ClientDetailViewModel.ClientId)}={client.ClientId}");
+            await Shell.Current.GoToAsync($"{nameof(CommentDetailPage)}?{nameof(CommentDetailViewModel.CommentId)}={comment.CommentId}");
         }
 
         async void DeleteCommentCommandHandler(Comment comment)

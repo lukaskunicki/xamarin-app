@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TodoList.Views.NewCommentPage"
+             x:Class="TodoList.Views.CommentDetailPage"
              Title="Add a new comment">
 
     <StackLayout Spacing="20" Padding="15">

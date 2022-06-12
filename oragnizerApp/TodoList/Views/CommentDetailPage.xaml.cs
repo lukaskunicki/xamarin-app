@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 using TodoList.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 namespace TodoList.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewCommentPage : ContentPage
+    public partial class CommentDetailPage : ContentPage
     {
-        public NewCommentPage()
+        public CommentDetailPage()
         {
             InitializeComponent();
-            BindingContext = new NewCommentViewModel();
+            BindingContext = new CommentDetailViewModel();
 
         }
     }

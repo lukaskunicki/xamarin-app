@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TodoList.Views.NewProjectPage"
-             Title="Add a new project">
+             x:Class="TodoList.Views.ProjectDetailPage"
+             Title="Edit Project">
 
     <StackLayout Spacing="20" Padding="15">
 
@@ -32,7 +32,7 @@
                 MinimumDate="01/01/2010" />
             </StackLayout>
 
-            
+
             <StackLayout Margin="20">
                 <Label Text="Pick end date:" FontSize="Micro" />
                 <DatePicker 

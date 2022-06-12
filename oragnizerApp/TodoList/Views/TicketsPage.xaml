@@ -19,24 +19,62 @@
                 <ViewCell>
                     <Frame OutlineColor="LightGray" Margin="10, 10, 10, 10" Padding="10, 10, 10, 10">
                         <FlexLayout Direction="Row" x:Name="Item">
-                            <Label Text="Name:" FlexLayout.Grow="1" >
+                            <Label FlexLayout.Grow="1" >
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="Start Time: " />
+                                        <Span Text="Title: " />
                                         <Span Text="{Binding Title}" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label Text="Name:" FlexLayout.Grow="1" >
+                            <Label FlexLayout.Grow="1" >
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="Start Time: " />
+                                        <Span Text="Priority: " />
+                                        <Span Text="{Binding Priority.Name}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label FlexLayout.Grow="1" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Employee: " />
+                                        <Span Text="{Binding AssignedEmployee.Surname}" />
+                                        <Span Text=" " />
+                                        <Span Text="{Binding AssignedEmployee.Name}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label FlexLayout.Grow="1" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Created: " />
                                         <Span Text="{Binding Created}" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Button Text="Delete" BindingContext="{Binding Source={x:Reference TicketsListView}, Path=BindingContext}" Command="{Binding DeleteTicketsCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
-                            <Button Text="Edit" BindingContext="{Binding Source={x:Reference TicketsListView}, Path=BindingContext}" Command="{Binding EditTicketsCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                            <Label FlexLayout.Grow="1" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Reporter: " />
+                                        <Span Text="{Binding Reporter.Surname}" />
+                                        <Span Text=" " />
+                                        <Span Text="{Binding Reporter.Name}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label FlexLayout.Grow="1" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Sprint: " />
+                                        <Span Text="{Binding Sprint.StartTime}" />
+                                        <Span Text=" do " />
+                                        <Span Text="{Binding Sprint.EndTime}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Button Text="Delete" BindingContext="{Binding Source={x:Reference TicketsListView}, Path=BindingContext}" Command="{Binding DeleteTicketCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
+                            <Button Text="Edit" BindingContext="{Binding Source={x:Reference TicketsListView}, Path=BindingContext}" Command="{Binding EditTicketCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
                         </FlexLayout>
                     </Frame>
                 </ViewCell>

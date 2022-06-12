@@ -9,25 +9,22 @@ using Xamarin.Forms;
 
 namespace TodoList.ViewModels
 {
-    public class NewProjectViewModel : BaseDataViewModel<APIClient>
+    [QueryProperty(nameof(CommentId), nameof(CommentId))]
+    public class CommentDetailViewModel : BaseDataViewModel<APIClient>
     {
 
         private Employee _selectedEmployee;
-        private Client _selectedClient;
-        private int projectId;
-        private string name;
-        private DateTime startTime;
-        private DateTime endTime;
+        private int commentId;
+        private string content;
+        private DateTime created;
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
         public ObservableCollection<Employee> Employees { get; }
-        public ObservableCollection<Client> Clients { get; }
         public Command LoadEmployeesCommand { get; }
-        public Command LoadClientsCommand { get; }
 
-        public NewProjectViewModel()
+        public CommentDetailViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
@@ -35,11 +32,8 @@ namespace TodoList.ViewModels
                 (_, __) => SaveCommand.ChangeCanExecute();
 
             Employees = new ObservableCollection<Employee>();
-            Clients = new ObservableCollection<Client>();
             LoadEmployeesCommand = new Command(async () => await ExecuteLoadEmployeesCommand());
-            LoadClientsCommand = new Command(async () => await ExecuteLoadClientsCommand());
             ExecuteLoadEmployeesCommand();
-            ExecuteLoadClientsCommand();
         }
 
         private bool ValidateSave()
@@ -49,32 +43,28 @@ namespace TodoList.ViewModels
 
         public int Id { get; set; }
 
-        public int ProjectId
+        public int CommentId
         {
             get
             {
-                return projectId;
+                return commentId;
             }
             set
             {
-                projectId = value;
+                commentId = value;
+                LoadItemId(value);
             }
         }
 
-        public string Name
+        public string Content
         {
-            get => name;
-            set => SetProperty(ref name, value);
+            get => content;
+            set => SetProperty(ref content, value);
         }
-        public DateTime StartTime
+        public DateTime Created
         {
-            get => startTime;
-            set => SetProperty(ref startTime, value);
-        }
-        public DateTime EndTime
-        {
-            get => endTime;
-            set => SetProperty(ref endTime, value);
+            get => created;
+            set => SetProperty(ref created, value);
         }
 
         async Task ExecuteLoadEmployeesCommand()
@@ -103,33 +93,6 @@ namespace TodoList.ViewModels
                 IsBusy = false;
             }
         }
-        async Task ExecuteLoadClientsCommand()
-        {
-            IsBusy = true;
-
-            try
-            {
-                Clients.Clear();
-                var clients = await _apiClient.ClientsAllAsync();
-
-                foreach (var client in clients)
-                {
-                  
-                    if (!Clients.Contains(client))
-                    {
-                        Clients.Add(client);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
 
         public Employee SelectedEmployee
         {
@@ -139,15 +102,24 @@ namespace TodoList.ViewModels
                 SetProperty(ref _selectedEmployee, value);
             }
         }
-        public Client SelectedClient
+
+        public async void LoadItemId(int itemId)
         {
-            get => _selectedClient;
-            set
+            try
             {
-                SetProperty(ref _selectedClient, value);
+                var comment = await _apiClient.CommentsGETAsync(itemId);
+
+                if (comment != null)
+                {
+                    this.Id = comment.CommentId;
+                    this.Content = comment.Content;
+                }
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Failed to Load Serviceman");
             }
         }
-
         private async void OnCancel()
         {
             await Shell.Current.GoToAsync("..");
@@ -155,18 +127,16 @@ namespace TodoList.ViewModels
 
         private async void OnSave()
         {
-            Project newProject = new Project()
+            Comment newComment = new Comment()
             {
-                Name = name,
-                StartTime = startTime,
-                EndTime = endTime,
-                projectManageremployeeId = _selectedEmployee.EmployeeId,
-                ClientId = _selectedClient.ClientId,
-
+                CommentId = commentId,
+                Created = created,
+                Content = content,
+                AssignedEmployeeemployeeId = _selectedEmployee.EmployeeId,
             };
             try
             {
-                await _apiClient.ProjectsPOSTAsync(newProject);
+                await _apiClient.CommentsPUTAsync(newComment.CommentId, newComment);
             }
             catch (Exception e)
             {
@@ -176,6 +146,7 @@ namespace TodoList.ViewModels
             {
                 await Shell.Current.GoToAsync("..");
             }
+
             // This will pop the current page off the navigation stack
         }
     }
