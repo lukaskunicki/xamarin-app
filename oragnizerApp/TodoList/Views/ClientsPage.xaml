@@ -6,8 +6,8 @@
              x:Name="BrowseClientsPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Refresh" Command="{Binding LoadClientsCommand}"/>
-        <ToolbarItem Text="Add" Command="{Binding AddClientCommand}"/>
+        <ToolbarItem  Command="{Binding LoadClientsCommand}" Order="Primary" Priority="1" IconImageSource="rotate-right-free-icon-font.png"/>
+        <ToolbarItem  Command="{Binding AddClientCommand}" IconImageSource="add-free-icon-font.png"/>
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.

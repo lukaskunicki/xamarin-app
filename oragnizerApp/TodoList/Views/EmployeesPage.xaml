@@ -6,8 +6,8 @@
              x:Name="BrowseEmployeesPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Refresh" Command="{Binding LoadEmployeesCommand}"/>
-        <ToolbarItem Text="Add" Command="{Binding AddEmployeeCommand}"/>
+        <ToolbarItem  Command="{Binding LoadEmployeesCommand}" IconImageSource="rotate-right-free-icon-font.png"/>
+        <ToolbarItem  Command="{Binding AddEmployeeCommand}" IconImageSource="add-free-icon-font.png"/>
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
