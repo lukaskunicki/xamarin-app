@@ -68,7 +68,7 @@
                                     <FormattedString>
                                         <Span Text="Sprint: " />
                                         <Span Text="{Binding Sprint.StartTime, StringFormat='{}{0:MM/dd/yyyy}'}" TextColor="Green" />
-                                        <Span>; </Span>
+                                        
                                         <Span Text="&#x0a;Do " />
                                         <Span Text="{Binding Sprint.EndTime, StringFormat='{}{0:MM/dd/yyyy}'}" TextColor="red" />
                                     </FormattedString>
