@@ -27,12 +27,13 @@
                 <Label Text="{Binding SelectedTeam.TeamName}" FontSize="Micro" TextColor="#000"/>
             </StackLayout>
         </Frame>
-        <StackLayout Margin="20">
-            <Label Text="New Name:" FontSize="Micro" />
+        <StackLayout >
+            <Label Text="Edit:" FontSize="Micro" />
             <Entry Text="{Binding Name, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter name" FontSize="Micro" />
             <Entry Text="{Binding Surname, Mode=TwoWay}"  Grid.Column="1" Placeholder="Surname" FontSize="Micro" />
             <Picker 
                 Title="Selected Team" 
+                TitleColor="Black"
                 ItemsSource="{Binding Teams}"  
                 ItemDisplayBinding="{Binding TeamName}"
                 SelectedItem="{Binding SelectedTeam, Mode=TwoWay}"

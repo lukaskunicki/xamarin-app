@@ -9,6 +9,8 @@ using Xamarin.Forms;
 
 namespace TodoList.ViewModels
 {
+    [QueryProperty(nameof(SprintId), nameof(SprintId))]
+
     public class SprintDetailViewModel : BaseDataViewModel<APIClient>
     {
 
@@ -47,6 +49,7 @@ namespace TodoList.ViewModels
             set
             {
                 sprintId = value;
+                LoadItemId(value);
             }
         }
 
@@ -61,6 +64,24 @@ namespace TodoList.ViewModels
             set => SetProperty(ref endTime, value);
         }
 
+        public async void LoadItemId(int itemId)
+        {
+            try
+            {
+                var sprint = await _apiClient.SprintsGETAsync(itemId);
+
+                if (sprint != null)
+                {
+                    this.Id = sprint.SprintId;
+                    this.StartTime = sprint.StartTime;
+                    this.EndTime = sprint.EndTime;
+                }
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Failed to Load Serviceman");
+            }
+        }
 
         private async void OnCancel()
         {

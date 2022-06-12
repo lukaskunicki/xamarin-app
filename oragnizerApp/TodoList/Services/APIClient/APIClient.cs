@@ -4144,10 +4144,10 @@ namespace TodoList.Services.APIClient
         public int SprintId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("startTime", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset StartTime { get; set; }
+        public System.DateTime StartTime { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endTime", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset EndTime { get; set; }
+        public System.DateTime EndTime { get; set; }
 
     }
 
