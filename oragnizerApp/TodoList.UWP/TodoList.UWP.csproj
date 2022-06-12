@@ -104,9 +104,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="add-free-icon-font.png" />
     <Content Include="address-book-free-icon-font.png" />
     <Content Include="Assets\select.png" />
-    <Content Include="categories.png" />
     <Content Include="clients.png" />
     <Content Include="comment-alt-free-icon-font.png" />
     <Content Include="comment.png" />
@@ -144,6 +144,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="rotate-right-free-icon-font.png" />
     <Content Include="select.png" />
     <Content Include="servicemen.png" />
     <Content Include="sign-out-alt-free-icon-font.png" />

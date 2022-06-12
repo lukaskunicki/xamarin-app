@@ -6,20 +6,20 @@
              x:Name="BrowseTicketsPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Refresh" Command="{Binding LoadTicketsCommand}"/>
-        <ToolbarItem Text="Add" Command="{Binding AddTicketCommand}"/>
+        <ToolbarItem Command="{Binding LoadTicketsCommand}" IconImageSource="rotate-right-free-icon-font.png"/>
+        <ToolbarItem Command="{Binding AddTicketCommand}" IconImageSource="add-free-icon-font.png"/>
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <ListView ItemsSource="{Binding Tickets}" x:Name="TicketsListView">
+    <ListView ItemsSource="{Binding Tickets}" x:Name="TicketsListView" RowHeight="100">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <Frame OutlineColor="LightGray" Margin="10, 10, 10, 10" Padding="10, 10, 10, 10">
                         <FlexLayout Direction="Row" x:Name="Item">
-                            <Label FlexLayout.Grow="1" >
+                            <Label FlexLayout.Grow="1" LineBreakMode="NoWrap" Padding="20" >
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Title: " />
@@ -27,15 +27,15 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label FlexLayout.Grow="1" >
+                            <Label FlexLayout.Grow="1" LineBreakMode="NoWrap" Padding="20" >
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Priority: " />
-                                        <Span Text="{Binding Priority.Name}" />
+                                        <Span Text="{Binding Priority.Name}" TextColor="orange" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label FlexLayout.Grow="1" >
+                            <Label FlexLayout.Grow="1" LineBreakMode="NoWrap" Padding="20" >
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Employee: " />
@@ -45,7 +45,7 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label FlexLayout.Grow="1" >
+                            <Label FlexLayout.Grow="1" LineBreakMode="NoWrap" Padding="20">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Created: " />
@@ -53,7 +53,7 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label FlexLayout.Grow="1" >
+                            <Label FlexLayout.Grow="1" LineBreakMode="NoWrap" Padding="20">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Reporter: " />
@@ -63,13 +63,13 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label FlexLayout.Grow="1" >
+                            <Label FlexLayout.Grow="1" LineBreakMode="NoWrap" Padding="20">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Sprint: " />
-                                        <Span Text="{Binding Sprint.StartTime}" />
+                                        <Span Text="{Binding Sprint.StartTime}" TextColor="Green" />
                                         <Span Text=" do " />
-                                        <Span Text="{Binding Sprint.EndTime}" />
+                                        <Span Text="{Binding Sprint.EndTime}" TextColor="red" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>

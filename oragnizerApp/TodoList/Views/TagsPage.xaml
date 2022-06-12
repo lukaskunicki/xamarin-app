@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoList.Views.TagsPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Refresh" Command="{Binding LoadTagsCommand}"/>
-        <ToolbarItem Text="Add" Command="{Binding AddTagCommand}"/>
+        <ToolbarItem  Command="{Binding LoadTagsCommand}"  IconImageSource="rotate-right-free-icon-font.png"/>
+        <ToolbarItem  Command="{Binding AddTagCommand}" IconImageSource="add-free-icon-font.png"/>
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
