@@ -4135,6 +4135,11 @@ namespace TodoList.Services.APIClient
         [Newtonsoft.Json.JsonProperty("projectManageremployeeId")]
         public int projectManageremployeeId { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("projectManager")]
+        public Employee ProjectManager { get; set; }
+        
+        [Newtonsoft.Json.JsonProperty("client")]
+        public Client Client { get; set; }
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.5.0 (NJsonSchema v10.6.6.0 (Newtonsoft.Json v11.0.0.0))")]
@@ -4214,6 +4219,8 @@ namespace TodoList.Services.APIClient
 
         [Newtonsoft.Json.JsonProperty("sprintId")]
         public int SprintId { get; set; }
+
+
     }
 
 
