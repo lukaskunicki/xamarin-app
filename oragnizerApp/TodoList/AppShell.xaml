@@ -81,48 +81,48 @@
 
 
 
-    <FlyoutItem Title="Clients" Icon="clients.png">
+    <FlyoutItem Title="Clients" Icon="users-free-icon-font.png">
         <ShellContent Route="ClientsPage" ContentTemplate="{DataTemplate local:ClientsPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Tickets" Icon="hash.png">
+    <FlyoutItem Title="Tickets" Icon="ticket-free-icon-font.png">
         <ShellContent Route="TicketsPage" ContentTemplate="{DataTemplate local:TicketsPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Projects" Icon="hash.png">
+    <FlyoutItem Title="Projects" Icon="layers-free-icon-font.png">
         <ShellContent Route="ProjectsPage" ContentTemplate="{DataTemplate local:ProjectsPage}" />
     </FlyoutItem>
 
 
-    <FlyoutItem Title="Employees" Icon="employee.png">
+    <FlyoutItem Title="Employees" Icon="users-alt-free-icon-font.png">
         <ShellContent Route="EmployeesPage" ContentTemplate="{DataTemplate local:EmployeesPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Teams" Icon="employee.png">
+    <FlyoutItem Title="Teams" Icon="address-book-free-icon-font.png">
         <ShellContent Route="TeamsPage" ContentTemplate="{DataTemplate local:TeamsPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Sprints" Icon="employee.png">
+    <FlyoutItem Title="Sprints" Icon="time-fast-free-icon-font.png">
         <ShellContent Route="SprintsPage" ContentTemplate="{DataTemplate local:SprintsPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Comments" Icon="comment.png">
+    <FlyoutItem Title="Comments" Icon="comment-alt-free-icon-font.png">
         <ShellContent Route="CommentsPage" ContentTemplate="{DataTemplate local:CommentsPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Tags" Icon="hash.png">
+    <FlyoutItem Title="Tags" Icon="tags-free-icon-font.png">
         <ShellContent Route="TagsPage" ContentTemplate="{DataTemplate local:TagsPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Reports" Icon="hash.png">
+    <FlyoutItem Title="Reports" Icon="document-signed-free-icon-font.png">
         <ShellContent Route="ReportsPage" ContentTemplate="{DataTemplate local:ReportsPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Priorities" Icon="hash.png">
+    <FlyoutItem Title="Priorities" Icon="signal-alt-free-icon-font.png">
         <ShellContent Route="PrioritiesPage" ContentTemplate="{DataTemplate local:PrioritiesPage}" />
     </FlyoutItem>
-    <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
-    <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked" IconImageSource="logout.png">
+
+    <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked" IconImageSource="sign-out-alt-free-icon-font.png">
     </MenuItem>
 
     <!-- Optional Templates
