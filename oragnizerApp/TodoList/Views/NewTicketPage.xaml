@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoList.Views.NewTicketPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+
+            <StackLayout Margin="20">
+                <Label Text="Title:" FontSize="Micro" />
+                <Entry Text="{Binding Title, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
+                <Picker
+                    Title="Priority"
+                    ItemsSource="{Binding Priorities}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedPriority, Mode=TwoWay}"
+                />
+                <Picker
+                    Title="Assigned employee"
+                    ItemsSource="{Binding Employees}"
+                    ItemDisplayBinding="{Binding Surname}"
+                    SelectedItem="{Binding AssignedEmployee, Mode=TwoWay}"
+                />
+                <Picker
+                    Title="Responsible employee"
+                    ItemsSource="{Binding Employees}"
+                    ItemDisplayBinding="{Binding Surname}"
+                    SelectedItem="{Binding ReporterEmployee, Mode=TwoWay}"
+                />
+                <Picker
+                    Title="Sprint"
+                    ItemsSource="{Binding Sprints}"
+                    ItemDisplayBinding="{Binding StartTime}"
+                    SelectedItem="{Binding SelectedSprint, Mode=TwoWay}"
+                />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Margin="15">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" TextColor="#fff"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

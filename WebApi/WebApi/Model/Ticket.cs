@@ -13,21 +13,21 @@ namespace WebApi.Model
         public string title { get; set; }
 
         [ForeignKey("[priorityId]")]
-        public int priorityId { get; set; }
-        public Priority priority { get; set; }
+        public int? priorityId { get; set; }
+        public virtual Priority? priority { get; set; }
 
         [ForeignKey("[assignedEmployeeemployeeId]")]
         public int? assignedEmployeeemployeeId { get; set; }
-        public Employee? assignedEmployee { get; set; }
+        public virtual Employee? assignedEmployee { get; set; }
 
         [ForeignKey("[reporteremployeeId]")]
         public int? reporteremployeeId { get; set; }
-        public Employee? reporter { get; set; }
+        public virtual Employee? reporter { get; set; }
 
         [ForeignKey("[sprintId]")]
         public int? sprintId { get; set; }
 
-        public Sprint? sprint { get; set; }
+        public virtual Sprint? sprint { get; set; }
         public DateTime created { get; set; }
     }
 }

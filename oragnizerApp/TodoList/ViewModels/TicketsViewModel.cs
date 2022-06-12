@@ -78,8 +78,7 @@ namespace TodoList.ViewModels
 
         private async void OnAddTicket(object obj)
         {
-
-            // await Shell.Current.GoToAsync(nameof(NewTicketPage));
+            await Shell.Current.GoToAsync(nameof(NewTicketPage));
         }
 
         async void OnTicketselected(Ticket Ticket)
