@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using TodoList.Services.APIClient;
 using Xamarin.Forms;
@@ -36,7 +34,7 @@ namespace TodoList.ViewModels
 
         public TicketDetailViewModel()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
+            SaveCommand = new Command(OnSave);
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
@@ -55,14 +53,6 @@ namespace TodoList.ViewModels
             ExecuteLoadPrioritiesCommand();
             ExecuteLoadSprintsCommand();
         }
-
-        private bool ValidateSave()
-        {
-            return true;
-        }
-
-        public int Id { get; set; }
-
         public int TicketId
         {
             get
@@ -86,7 +76,38 @@ namespace TodoList.ViewModels
             get => created;
             set => SetProperty(ref created, value);
         }
-
+        public Employee SelectedEmployee
+        {
+            get => _selectedEmployee;
+            set
+            {
+                SetProperty(ref _selectedEmployee, value);
+            }
+        }
+        public Priority SelectedPriority
+        {
+            get => _selectedPriority;
+            set
+            {
+                SetProperty(ref _selectedPriority, value);
+            }
+        }
+        public Employee SelectedReporter
+        {
+            get => _selectedReporter;
+            set
+            {
+                SetProperty(ref _selectedReporter, value);
+            }
+        }
+        public Sprint SelectedSprint
+        {
+            get => _selectedSprint;
+            set
+            {
+                SetProperty(ref _selectedSprint, value);
+            }
+        }
         async Task ExecuteLoadEmployeesCommand()
         {
             IsBusy = true;
@@ -195,39 +216,6 @@ namespace TodoList.ViewModels
             }
         }
 
-        public Employee SelectedEmployee
-        {
-            get => _selectedEmployee;
-            set
-            {
-                SetProperty(ref _selectedEmployee, value);
-            }
-        }
-        public Priority SelectedPriority
-        {
-            get => _selectedPriority;
-            set
-            {
-                SetProperty(ref _selectedPriority, value);
-            }
-        }
-        public Employee SelectedReporter
-        {
-            get => _selectedReporter;
-            set
-            {
-                SetProperty(ref _selectedReporter, value);
-            }
-        }
-        public Sprint SelectedSprint
-        {
-            get => _selectedSprint;
-            set
-            {
-                SetProperty(ref _selectedSprint, value);
-            }
-        }
-
         public async void LoadItemId(int itemId)
         {
             try
@@ -279,8 +267,6 @@ namespace TodoList.ViewModels
             {
                 await Shell.Current.GoToAsync("..");
             }
-
-            // This will pop the current page off the navigation stack
         }
     }
 }

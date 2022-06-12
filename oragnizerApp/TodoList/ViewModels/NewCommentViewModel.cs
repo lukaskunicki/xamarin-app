@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using TodoList.Services.APIClient;
 using Xamarin.Forms;
@@ -25,7 +23,7 @@ namespace TodoList.ViewModels
 
         public NewCommentViewModel()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
+            SaveCommand = new Command(OnSave);
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
@@ -34,13 +32,6 @@ namespace TodoList.ViewModels
             LoadCommentCommand = new Command(async () => await ExecuteLoadEmployeesCommand());
             ExecuteLoadEmployeesCommand();
         }
-
-        private bool ValidateSave()
-        {
-            return true;
-        }
-
-        public int Id { get; set; }
 
         public int CommentId
         {
@@ -60,6 +51,21 @@ namespace TodoList.ViewModels
             set => SetProperty(ref content, value);
         }
 
+        public Employee SelectedEmployee
+        {
+            get => _selectedEmployee;
+            set
+            {
+                SetProperty(ref _selectedEmployee, value);
+            }
+        }
+
+        public DateTime Created
+        {
+            get => created;
+            set => SetProperty(ref created, value);
+        }
+
         async Task ExecuteLoadEmployeesCommand()
         {
             IsBusy = true;
@@ -67,7 +73,7 @@ namespace TodoList.ViewModels
             try
             {
                 Employees.Clear();
-                var employees = await _apiClient.EmployeesAllAsync();
+                var employees = await LoadEmployees();
 
                 foreach (var employee in employees)
                 {
@@ -87,21 +93,6 @@ namespace TodoList.ViewModels
             }
         }
 
-        public Employee SelectedEmployee
-        {
-            get => _selectedEmployee;
-            set
-            {
-                SetProperty(ref _selectedEmployee, value);
-            }
-        }
-
-        public DateTime Created
-        {
-            get => created;
-            set => SetProperty(ref created, value);
-        }
-
         private async void OnCancel()
         {
             await Shell.Current.GoToAsync("..");
@@ -116,13 +107,6 @@ namespace TodoList.ViewModels
                 AssignedEmployeeemployeeId = _selectedEmployee.EmployeeId,
             };
 
-
-            Debug.WriteLine("---------------------------");
-            Debug.WriteLine(newComment.CommentId);
-            Debug.WriteLine(newComment.Content);
-            Debug.WriteLine(newComment.AssignedEmployeeemployeeId);
-
-            Debug.WriteLine("-----------------------");
             try
             {
                 await _apiClient.CommentsPOSTAsync(newComment);
@@ -135,7 +119,6 @@ namespace TodoList.ViewModels
             {
                 await Shell.Current.GoToAsync("..");
             }
-            // This will pop the current page off the navigation stack
         }
     }
 }

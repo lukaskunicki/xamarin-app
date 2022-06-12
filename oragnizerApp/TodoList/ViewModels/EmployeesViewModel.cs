@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using TodoList.Services.APIClient;
 using TodoList.Views;
@@ -12,14 +10,11 @@ namespace TodoList.ViewModels
 {
     public class EmployeesViewModel : BaseDataViewModel<APIClient>
     {
-        private Employee _selectedEmployee;
-
         public ObservableCollection<Employee> Employees { get; }
         public Command LoadEmployeesCommand { get; }
         public Command AddEmployeeCommand { get; }
         public Command<Employee> EditEmployeeCommand { get; }
         public Command<Employee> DeleteEmployeeCommand { get; }
-        public Command<Employee> ItemTapped { get; }
 
         public EmployeesViewModel()
         {
@@ -27,7 +22,6 @@ namespace TodoList.ViewModels
             Employees = new ObservableCollection<Employee>();
             LoadEmployeesCommand = new Command(async () => await ExecuteLoadEmployeesCommand());
             ExecuteLoadEmployeesCommand();
-            ItemTapped = new Command<Employee>(OnEmployeeSelected);
 
             EditEmployeeCommand = new Command<Employee>(EditEmployeeCommandHandler);
             DeleteEmployeeCommand = new Command<Employee>(DeleteEmployeeCommandHandler);
@@ -41,7 +35,7 @@ namespace TodoList.ViewModels
             try
             {
                 Employees.Clear();
-                var employees = await _apiClient.EmployeesAllAsync();
+                var employees = await LoadEmployees();
 
                 foreach (var employee in employees)
                 {
@@ -61,41 +55,20 @@ namespace TodoList.ViewModels
             }
         }
 
+
         public async void OnAppearing()
         {
             IsBusy = true;
-            SelectedEmployee = null;
-        }
-
-        public Employee SelectedEmployee
-        {
-            get => _selectedEmployee;
-            set
-            {
-                SetProperty(ref _selectedEmployee, value);
-                OnEmployeeSelected(value);
-            }
         }
 
         private async void OnAddEmployee(object obj)
         {
-            Debug.WriteLine("fdsfdsfdsfdsfdsfdsfds");
             await Shell.Current.GoToAsync(nameof(NewEmployeePage));
-        }
-
-        async void OnEmployeeSelected(Employee employee)
-        {
-
-            if (employee == null) return;
-            // This will push the ItemDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(ClientDetailPage)}?{nameof(ClientDetailViewModel.ClientId)}={client.ClientId}");
         }
 
         async void EditEmployeeCommandHandler(Employee employee)
         {
-            if (employee == null)
-                return;
-            // This will push the CategoryDetailPage onto the navigation stack
+            if (employee == null) return;
             await Shell.Current.GoToAsync($"{nameof(EmployeeDetailPage)}?{nameof(EmployeeDetailViewModel.EmployeeId)}={employee.EmployeeId}");
         }
 

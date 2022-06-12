@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using TodoList.Services.APIClient;
 using Xamarin.Forms;
@@ -26,7 +24,7 @@ namespace TodoList.ViewModels
 
         public NewEmployeeViewModel()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
+            SaveCommand = new Command(OnSave);
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
@@ -35,13 +33,6 @@ namespace TodoList.ViewModels
             LoadTeamsCommand = new Command(async () => await ExecuteLoadTeamsCommand());
             ExecuteLoadTeamsCommand();
         }
-
-        private bool ValidateSave()
-        {
-            return true;
-        }
-
-        public int Id { get; set; }
 
         public int EmployeeId
         {
@@ -73,7 +64,7 @@ namespace TodoList.ViewModels
             try
             {
                 Teams.Clear();
-                var teams = await _apiClient.TeamsAllAsync();
+                var teams = await LoadTeams();
 
                 foreach (var team in teams)
                 {
@@ -115,13 +106,6 @@ namespace TodoList.ViewModels
                 Surname = surname,
                 TeamId = _selectedTeam.TeamId,
             };
-            Debug.WriteLine("         ");
-            Debug.WriteLine(newEmployee.Name);
-            Debug.WriteLine(newEmployee.Surname);
-            Debug.WriteLine(newEmployee.TeamId);
-
-
-            Debug.WriteLine("         ");
 
             try
             {
@@ -135,7 +119,6 @@ namespace TodoList.ViewModels
             {
                 await Shell.Current.GoToAsync("..");
             }
-            // This will pop the current page off the navigation stack
         }
     }
 }

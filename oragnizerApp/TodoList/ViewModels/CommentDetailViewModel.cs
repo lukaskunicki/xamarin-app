@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using TodoList.Services.APIClient;
 using Xamarin.Forms;
@@ -26,22 +24,14 @@ namespace TodoList.ViewModels
 
         public CommentDetailViewModel()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
+            SaveCommand = new Command(OnSave);
             CancelCommand = new Command(OnCancel);
-            this.PropertyChanged +=
-                (_, __) => SaveCommand.ChangeCanExecute();
+            PropertyChanged += (_, __) => SaveCommand.ChangeCanExecute();
 
             Employees = new ObservableCollection<Employee>();
             LoadEmployeesCommand = new Command(async () => await ExecuteLoadEmployeesCommand());
             ExecuteLoadEmployeesCommand();
         }
-
-        private bool ValidateSave()
-        {
-            return true;
-        }
-
-        public int Id { get; set; }
 
         public int CommentId
         {
@@ -74,7 +64,7 @@ namespace TodoList.ViewModels
             try
             {
                 Employees.Clear();
-                var employees = await _apiClient.EmployeesAllAsync();
+                var employees = await LoadEmployees();
 
                 foreach (var employee in employees)
                 {
@@ -111,13 +101,13 @@ namespace TodoList.ViewModels
 
                 if (comment != null)
                 {
-                    this.Id = comment.CommentId;
+                    this.CommentId = comment.CommentId;
                     this.Content = comment.Content;
                 }
             }
             catch (Exception)
             {
-                Debug.WriteLine("Failed to Load Serviceman");
+                Debug.WriteLine("Failed to Load Comment");
             }
         }
         private async void OnCancel()
@@ -146,8 +136,6 @@ namespace TodoList.ViewModels
             {
                 await Shell.Current.GoToAsync("..");
             }
-
-            // This will pop the current page off the navigation stack
         }
     }
 }

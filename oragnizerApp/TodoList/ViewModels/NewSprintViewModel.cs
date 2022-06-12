@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
-using System.Threading.Tasks;
 using TodoList.Services.APIClient;
 using Xamarin.Forms;
 
@@ -12,10 +8,8 @@ namespace TodoList.ViewModels
     public class NewSprintViewModel : BaseDataViewModel<APIClient>
     {
 
-        private int sprintId;
         private DateTime startTime;
         private DateTime endTime;
-
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
@@ -24,30 +18,9 @@ namespace TodoList.ViewModels
 
         public NewSprintViewModel()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
+            SaveCommand = new Command(OnSave);
             CancelCommand = new Command(OnCancel);
-            this.PropertyChanged +=
-                (_, __) => SaveCommand.ChangeCanExecute();
-
-        }
-
-        private bool ValidateSave()
-        {
-            return true;
-        }
-
-        public int Id { get; set; }
-
-        public int SprintId
-        {
-            get
-            {
-                return sprintId;
-            }
-            set
-            {
-                sprintId = value;
-            }
+            this.PropertyChanged += (_, __) => SaveCommand.ChangeCanExecute();
         }
 
         public DateTime StartTime
@@ -73,15 +46,7 @@ namespace TodoList.ViewModels
             {
                 StartTime = startTime,
                 EndTime = endTime,
-              
             };
-            Debug.WriteLine("         ");
-            Debug.WriteLine(newSprint.StartTime);
-            Debug.WriteLine(newSprint.EndTime);
-    
-
-
-            Debug.WriteLine("         ");
 
             try
             {
@@ -95,7 +60,6 @@ namespace TodoList.ViewModels
             {
                 await Shell.Current.GoToAsync("..");
             }
-            // This will pop the current page off the navigation stack
         }
     }
 }

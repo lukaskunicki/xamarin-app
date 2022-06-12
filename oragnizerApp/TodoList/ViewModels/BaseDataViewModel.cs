@@ -19,7 +19,6 @@ namespace TodoList.ViewModels
             {
                 foreach (var client in await _apiClient.ClientsAllAsync())
                 {
-                    Debug.WriteLine(client);
                     clients.Add(client);
                 }
             }
@@ -45,6 +44,40 @@ namespace TodoList.ViewModels
                 Debug.WriteLine(ex);
             }
             return employees;
+        }
+
+        public async Task<List<Comment>> LoadComments()
+        {
+            List<Comment> comments = new List<Comment>();
+            try
+            {
+                foreach (var comment in await _apiClient.CommentsAllAsync())
+                {
+                    comments.Add(comment);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return comments;
+        }
+
+        public async Task<List<Team>> LoadTeams()
+        {
+            List<Team> teams = new List<Team>();
+            try
+            {
+                foreach (var team in await _apiClient.TeamsAllAsync())
+                {
+                    teams.Add(team);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return teams;
         }
     }
 }

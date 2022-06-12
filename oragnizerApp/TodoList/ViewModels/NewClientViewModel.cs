@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using TodoList.Services.APIClient;
 using Xamarin.Forms;
@@ -24,7 +22,7 @@ namespace TodoList.ViewModels
 
         public NewClientViewModel()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
+            SaveCommand = new Command(OnSave);
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
@@ -33,13 +31,6 @@ namespace TodoList.ViewModels
             LoadEmployeesCommand = new Command(async () => await ExecuteLoadEmployeesCommand());
             ExecuteLoadEmployeesCommand();
         }
-
-        private bool ValidateSave()
-        {
-            return true;
-        }
-
-        public int Id { get; set; }
 
         public int ClientId
         {
@@ -52,13 +43,19 @@ namespace TodoList.ViewModels
                 clientId = value;
             }
         }
-
         public string Description
         {
             get => description;
             set => SetProperty(ref description, value);
         }
-
+        public Employee SelectedEmployee
+        {
+            get => _selectedEmployee;
+            set
+            {
+                SetProperty(ref _selectedEmployee, value);
+            }
+        }
         async Task ExecuteLoadEmployeesCommand()
         {
             IsBusy = true;
@@ -66,7 +63,7 @@ namespace TodoList.ViewModels
             try
             {
                 Employees.Clear();
-                var employees = await _apiClient.EmployeesAllAsync();
+                var employees = await LoadEmployees();
 
                 foreach (var employee in employees)
                 {
@@ -86,20 +83,10 @@ namespace TodoList.ViewModels
             }
         }
 
-        public Employee SelectedEmployee
-        {
-            get => _selectedEmployee;
-            set
-            {
-                SetProperty(ref _selectedEmployee, value);
-            }
-        }
-
         private async void OnCancel()
         {
             await Shell.Current.GoToAsync("..");
         }
-
         private async void OnSave()
         {
             Client newClient = new Client()

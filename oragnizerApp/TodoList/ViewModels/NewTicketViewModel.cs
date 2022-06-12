@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using TodoList.Services.APIClient;
 using Xamarin.Forms;
@@ -96,7 +94,7 @@ namespace TodoList.ViewModels
             try
             {
                 Employees.Clear();
-                var employees = await _apiClient.EmployeesAllAsync();
+                var employees = await LoadEmployees();
 
                 foreach (var employee in employees)
                 {

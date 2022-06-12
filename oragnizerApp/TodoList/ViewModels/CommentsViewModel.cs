@@ -12,14 +12,11 @@ namespace TodoList.ViewModels
 {
     public class CommentsViewModel : BaseDataViewModel<APIClient>
     {
-        private Comment _selectedComment;
-
         public ObservableCollection<Comment> Comments { get; }
         public Command LoadCommentsCommand { get; }
         public Command AddCommentCommand { get; }
         public Command<Comment> EditCommentCommand { get; }
         public Command<Comment> DeleteCommentCommand { get; }
-        public Command<Comment> ItemTapped { get; }
 
         public CommentsViewModel()
         {
@@ -27,7 +24,6 @@ namespace TodoList.ViewModels
             Comments = new ObservableCollection<Comment>();
             LoadCommentsCommand = new Command(async () => await ExecuteLoadCommentsCommand());
             ExecuteLoadCommentsCommand();
-            ItemTapped = new Command<Comment>(OnCommentSelected);
 
             EditCommentCommand = new Command<Comment>(EditCommentCommandHandler);
             DeleteCommentCommand = new Command<Comment>(DeleteCommentCommandHandler);
@@ -41,7 +37,7 @@ namespace TodoList.ViewModels
             try
             {
                 Comments.Clear();
-                var comments = await _apiClient.CommentsAllAsync();
+                var comments = await LoadComments();
 
                 foreach (var comment in comments)
                 {
@@ -64,17 +60,6 @@ namespace TodoList.ViewModels
         public async void OnAppearing()
         {
             IsBusy = true;
-            SelectedComment = null;
-        }
-
-        public Comment SelectedComment
-        {
-            get => _selectedComment;
-            set
-            {
-                SetProperty(ref _selectedComment, value);
-                OnCommentSelected(value);
-            }
         }
 
         private async void OnAddComment(object obj)
@@ -82,19 +67,10 @@ namespace TodoList.ViewModels
             await Shell.Current.GoToAsync(nameof(NewCommentPage));
         }
 
-        async void OnCommentSelected(Comment comment)
-        {
-
-            if (comment == null) return;
-            // This will push the ItemDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(ClientDetailPage)}?{nameof(ClientDetailViewModel.ClientId)}={client.ClientId}");
-        }
-
         async void EditCommentCommandHandler(Comment comment)
         {
             if (comment == null)
                 return;
-            // This will push the CategoryDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(CommentDetailPage)}?{nameof(CommentDetailViewModel.CommentId)}={comment.CommentId}");
         }
 

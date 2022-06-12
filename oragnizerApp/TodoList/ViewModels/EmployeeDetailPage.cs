@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using TodoList.Services.APIClient;
 using Xamarin.Forms;
@@ -19,7 +17,6 @@ namespace TodoList.ViewModels
         private string name;
         private string surname;
 
-
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
@@ -28,7 +25,7 @@ namespace TodoList.ViewModels
 
         public EmployeeDetailViewModel()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
+            SaveCommand = new Command(OnSave);
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
@@ -37,13 +34,6 @@ namespace TodoList.ViewModels
             LoadTeamsCommand = new Command(async () => await ExecuteLoadTeamsCommand());
             ExecuteLoadTeamsCommand();
         }
-
-        private bool ValidateSave()
-        {
-            return true;
-        }
-
-        public int Id { get; set; }
 
         public int EmployeeId
         {
@@ -69,6 +59,15 @@ namespace TodoList.ViewModels
             set => SetProperty(ref surname, value);
         }
 
+        public Team SelectedTeam
+        {
+            get => _selectedTeam;
+            set
+            {
+                SetProperty(ref _selectedTeam, value);
+            }
+        }
+
         async Task ExecuteLoadTeamsCommand()
         {
             IsBusy = true;
@@ -76,7 +75,7 @@ namespace TodoList.ViewModels
             try
             {
                 Teams.Clear();
-                var teams = await _apiClient.TeamsAllAsync();
+                var teams = await LoadTeams();
 
                 foreach (var team in teams)
                 {
@@ -96,15 +95,6 @@ namespace TodoList.ViewModels
             }
         }
 
-        public Team SelectedTeam
-        {
-            get => _selectedTeam;
-            set
-            {
-                SetProperty(ref _selectedTeam, value);
-            }
-        }
-
         public async void LoadItemId(int itemId)
         {
             try
@@ -113,7 +103,7 @@ namespace TodoList.ViewModels
 
                 if (employee != null)
                 {
-                    this.Id = employee.EmployeeId;
+                    this.EmployeeId = employee.EmployeeId;
                     this.Name = employee.Name;
                     this.Surname = employee.Surname;
                     this.SelectedTeam = employee.Team;
@@ -121,7 +111,7 @@ namespace TodoList.ViewModels
             }
             catch (Exception)
             {
-                Debug.WriteLine("Failed to Load Serviceman");
+                Debug.WriteLine("Failed to Load Employee");
             }
         }
         private async void OnCancel()
@@ -149,8 +139,6 @@ namespace TodoList.ViewModels
             {
                 await Shell.Current.GoToAsync("..");
             }
-
-            // This will pop the current page off the navigation stack
         }
     }
 }

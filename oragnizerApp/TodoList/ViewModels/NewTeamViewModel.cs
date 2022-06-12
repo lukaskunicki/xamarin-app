@@ -12,41 +12,17 @@ namespace TodoList.ViewModels
     public class NewTeamViewModel : BaseDataViewModel<APIClient>
     {
 
-        private int teamId;
         private string teamName;
         private string teamDescription;
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
-
-
         public NewTeamViewModel()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
+            SaveCommand = new Command(OnSave);
             CancelCommand = new Command(OnCancel);
-            this.PropertyChanged +=
-                (_, __) => SaveCommand.ChangeCanExecute();
-
-        }
-
-        private bool ValidateSave()
-        {
-            return true;
-        }
-
-        public int Id { get; set; }
-
-        public int TeamId
-        {
-            get
-            {
-                return teamId;
-            }
-            set
-            {
-                teamId = value;
-            }
+            this.PropertyChanged += (_, __) => SaveCommand.ChangeCanExecute();
         }
 
         public string TeamName
@@ -74,13 +50,6 @@ namespace TodoList.ViewModels
                 TeamDescription = teamDescription,
 
             };
-            Debug.WriteLine("         ");
-            Debug.WriteLine(newTeam.TeamName);
-            Debug.WriteLine(newTeam.TeamDescription);
-
-
-
-            Debug.WriteLine("         ");
 
             try
             {
@@ -94,7 +63,6 @@ namespace TodoList.ViewModels
             {
                 await Shell.Current.GoToAsync("..");
             }
-            // This will pop the current page off the navigation stack
         }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
-using System.Threading.Tasks;
 using TodoList.Services.APIClient;
 using Xamarin.Forms;
 
@@ -15,7 +11,6 @@ namespace TodoList.ViewModels
         private int priorityId;
         private string name;
 
-
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
@@ -23,19 +18,12 @@ namespace TodoList.ViewModels
 
         public NewPriorityViewModel()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
+            SaveCommand = new Command(OnSave);
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
 
         }
-
-        private bool ValidateSave()
-        {
-            return true;
-        }
-
-        public int Id { get; set; }
 
         public int PriorityId
         {
@@ -66,14 +54,7 @@ namespace TodoList.ViewModels
             Priority newPriority = new Priority()
             {
                 Name = name,
-
             };
-            Debug.WriteLine("         ");
-            Debug.WriteLine(newPriority.Name);
-
-
-
-            Debug.WriteLine("         ");
 
             try
             {
@@ -87,7 +68,6 @@ namespace TodoList.ViewModels
             {
                 await Shell.Current.GoToAsync("..");
             }
-            // This will pop the current page off the navigation stack
         }
     }
 }
