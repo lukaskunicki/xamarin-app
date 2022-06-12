@@ -20,7 +20,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Name: " />
-                                        <Span Text="{Binding Name}"/>
+                                        <Span Text="{Binding Name}" TextColor="orange"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>

@@ -23,7 +23,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Start Time: " />
-                                        <Span Text="{Binding StartTime}" />
+                                        <Span Text="{Binding StartTime}" TextColor="Green" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
@@ -31,7 +31,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="End Time: " />
-                                        <Span Text="{Binding EndTime}"/>
+                                        <Span Text="{Binding EndTime}" TextColor="red"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>

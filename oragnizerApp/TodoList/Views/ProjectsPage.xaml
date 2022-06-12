@@ -13,37 +13,37 @@
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <ListView ItemsSource="{Binding Projects}" x:Name="ProjectsListView">
+    <ListView ItemsSource="{Binding Projects}" x:Name="ProjectsListView" RowHeight="100">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <Frame OutlineColor="LightGray" Margin="10, 10, 10, 10" Padding="10, 10, 10, 10">
                         <FlexLayout Direction="Row" x:Name="Item">
-                            <Label Text="Name:" FlexLayout.Grow="1" >
-                                <Label.FormattedText>
+                            <Label Text="Name:" FlexLayout.Grow="1" LineBreakMode="NoWrap" Padding="20" >
+                                <Label.FormattedText >
                                     <FormattedString>
-                                        <Span Text="Start Time: " />
-                                        <Span Text="{Binding Name}" />
+                                        <Span Text="Name: " />
+                                        <Span Text="{Binding Name}"  />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label Text="Name:" FlexLayout.Grow="1" >
+                            <Label Text="Name:" FlexLayout.Grow="1" LineBreakMode="NoWrap" Padding="20" >
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Start Time: " />
-                                        <Span Text="{Binding StartTime}" />
+                                        <Span Text="{Binding StartTime}" TextColor="Green"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label Text="Description:" FlexLayout.Grow="1" >
+                            <Label Text="Description:" FlexLayout.Grow="1" LineBreakMode="NoWrap" Padding="20" >
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="End Time: " />
-                                        <Span Text="{Binding EndTime, StringFormat='{}{0:MM/dd/yyyy a\\t h:mm tt}'}"/>
+                                        <Span Text="{Binding EndTime, StringFormat='{}{0:MM/dd/yyyy a\\t h:mm tt}'}" TextColor="red"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label Text="Description:" FlexLayout.Grow="1" >
+                            <Label Text="Description:" FlexLayout.Grow="1" LineBreakMode="NoWrap" Padding="20">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Project menager: " />
@@ -53,7 +53,7 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label Text="Description:" FlexLayout.Grow="1" >
+                            <Label Text="Description:" FlexLayout.Grow="1" LineBreakMode="NoWrap" Padding="20">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Client: " />

@@ -18,10 +18,17 @@
                         <FlexLayout Direction="Row" x:Name="Item">
                             <Label Text="{Binding Content}" FlexLayout.Grow="1"  />
 
-                            <Label Text="Assigned Employee:" FlexLayout.Grow="1" />
-                            <Label Text="{Binding AssignedEmployee.Surname}" FlexLayout.Grow="1"  />
-                            <Label Text="{Binding Created}" FlexLayout.Grow="1"  />
+                            <Label Text="Assigned Employee:" FlexLayout.Grow="1" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Assigned Employee: " />
+                                        <Span Text="{Binding AssignedEmployee.Surname}" TextColor="Green" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
 
+                            <Label Text="{Binding Created}" FlexLayout.Grow="1"  TextColor="blue" />
+                            
                             <Button Text="Delete" BindingContext="{Binding Source={x:Reference CommentsListView}, Path=BindingContext}" Command="{Binding DeleteCommentCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
                             <Button Text="Edit" BindingContext="{Binding Source={x:Reference CommentsListView}, Path=BindingContext}" Command="{Binding EditCommentCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
                         </FlexLayout>
