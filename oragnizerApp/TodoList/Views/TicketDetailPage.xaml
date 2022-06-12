@@ -3,10 +3,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoList.Views.TicketDetailPage"
              Title="Edit Ticket">
-
-    <StackLayout Spacing="20" Padding="15">
-
-        <StackLayout Margin="20">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="75" />
+            <RowDefinition Height="75" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Frame Grid.Row="0" OutlineColor="LightGray">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Name:" FontSize="Micro" />
+                <Label Text="{Binding Title}"  FontSize="Micro" TextColor="#000"/>
+            </StackLayout>
+        </Frame>
+        <Frame Grid.Row="1" OutlineColor="LightGray">
+            <StackLayout Orientation="Horizontal"
+                                Spacing="15">
+                <Label Text="Assigned Employee:" FontSize="Micro" TextColor="#000" />
+                <Label Text="{Binding SelectedEmployee.Surname}" FontSize="Micro" TextColor="#000"/>
+            </StackLayout>
+        </Frame>
+        <Frame Grid.Row="2" OutlineColor="LightGray">
+            <StackLayout Orientation="Horizontal"
+                                    Spacing="15">
+                <Label Text="Reporter:" FontSize="Micro" TextColor="#000" />
+                <Label Text="{Binding SelectedReporter.Surname}" FontSize="Micro" TextColor="#000"/>
+            </StackLayout>
+        </Frame>
+        <Frame  Grid.Row="3" OutlineColor="LightGray">
+            <StackLayout Orientation="Horizontal"
+                                        Spacing="15">
+                <Label Text="Priority:" FontSize="Micro" TextColor="#000" />
+                <Label Text="{Binding SelectedPriority.Name}" FontSize="Micro" TextColor="#000"/>
+            </StackLayout>
+        </Frame>
+        <StackLayout Spacing="20" Padding="15" Grid.Row="0" Grid.Column="1">
             <Label Text="New Ticket:" FontSize="Micro" />
             <Entry Text="{Binding Title, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
             <Picker 
@@ -45,12 +82,13 @@
             <DatePicker 
                 Date="{Binding Created}"
                 MinimumDate="01/01/2010" />
-        </StackLayout>
 
-        <StackLayout Orientation="Horizontal" Margin="15">
-            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-            <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" TextColor="#fff"></Button>
+            <StackLayout Orientation="Horizontal" Margin="15">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" TextColor="#fff"></Button>
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
+    </Grid>
+
 
 </ContentPage>

@@ -107,6 +107,7 @@ namespace TodoList.ViewModels
                 {
                     this.Id = client.ClientId;
                     this.Description = client.Description;
+                    this.SelectedEmployee = client.ResponsibleEmployee;
                 }
             }
             catch (Exception)

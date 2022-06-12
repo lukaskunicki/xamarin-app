@@ -9,6 +9,8 @@ using Xamarin.Forms;
 
 namespace TodoList.ViewModels
 {
+    [QueryProperty(nameof(TicketId), nameof(TicketId))]
+
     public class TicketDetailViewModel : BaseDataViewModel<APIClient>
     {
 
@@ -70,6 +72,7 @@ namespace TodoList.ViewModels
             set
             {
                 ticketId = value;
+                LoadItemId(value);
             }
         }
 
@@ -222,6 +225,28 @@ namespace TodoList.ViewModels
             set
             {
                 SetProperty(ref _selectedSprint, value);
+            }
+        }
+
+        public async void LoadItemId(int itemId)
+        {
+            try
+            {
+                var ticket = await _apiClient.TicketsGETAsync(itemId);
+                if (ticket != null)
+                {
+                    this.TicketId = ticket.TicketId;
+                    this.Title = ticket.Title;
+                    this.SelectedEmployee = ticket.AssignedEmployee;
+                    this.SelectedReporter = ticket.Reporter;
+                    this.SelectedPriority = ticket.Priority;
+                    this.SelectedSprint = ticket.Sprint;
+                    this.Created = ticket.Created;
+                }
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Failed to Load Ticket");
             }
         }
 

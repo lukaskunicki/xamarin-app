@@ -33,6 +33,7 @@ namespace WebApi.Controllers
                 .Include(i => i.priority)
                 .Include(i => i.assignedEmployee)
                 .Include(i => i.assignedEmployee.team)
+                .Include(i => i.sprint)
                 .Include(i => i.reporter)
                 .Include(i => i.reporter.team)
                 .ToList();
@@ -48,10 +49,12 @@ namespace WebApi.Controllers
         {
             var result = _context.Ticket
                 .Where(s => s.ticketId == id)
+                .Include(i => i.priority)
                 .Include(i => i.assignedEmployee)
                 .Include(i => i.assignedEmployee.team)
                 .Include(i => i.reporter)
                 .Include(i => i.reporter.team)
+                .Include(i => i.sprint)
                 .FirstOrDefault();
 
             if (result == null)

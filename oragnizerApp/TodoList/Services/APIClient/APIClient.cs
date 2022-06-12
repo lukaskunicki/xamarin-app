@@ -4197,8 +4197,11 @@ namespace TodoList.Services.APIClient
         [Newtonsoft.Json.JsonProperty("reporter", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Employee Reporter { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("sprint")]
+        public Sprint Sprint { get; set; }
+
         [Newtonsoft.Json.JsonProperty("created", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset Created { get; set; }
+        public System.DateTime Created { get; set; }
 
         [Newtonsoft.Json.JsonProperty("priorityId")]
         public int PriorityId { get; set; }

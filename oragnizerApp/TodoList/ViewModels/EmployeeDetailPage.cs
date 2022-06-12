@@ -9,6 +9,8 @@ using Xamarin.Forms;
 
 namespace TodoList.ViewModels
 {
+    [QueryProperty(nameof(EmployeeId), nameof(EmployeeId))]
+
     public class EmployeeDetailViewModel : BaseDataViewModel<APIClient>
     {
 
@@ -52,6 +54,7 @@ namespace TodoList.ViewModels
             set
             {
                 employeeId = value;
+                LoadItemId(value);
             }
         }
 
@@ -102,6 +105,25 @@ namespace TodoList.ViewModels
             }
         }
 
+        public async void LoadItemId(int itemId)
+        {
+            try
+            {
+                var employee = await _apiClient.EmployeesGETAsync(itemId);
+
+                if (employee != null)
+                {
+                    this.Id = employee.EmployeeId;
+                    this.Name = employee.Name;
+                    this.Surname = employee.Surname;
+                    this.SelectedTeam = employee.Team;
+                }
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Failed to Load Serviceman");
+            }
+        }
         private async void OnCancel()
         {
             await Shell.Current.GoToAsync("..");
