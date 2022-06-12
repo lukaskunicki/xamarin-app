@@ -14,12 +14,12 @@ namespace WebApi.Model
         [ForeignKey("[projectManageremployeeId]")]
 
         public int? projectManageremployeeId { get; set; }
-        public Employee projectManager { get; set; }
+        public virtual Employee? projectManager { get; set; }
         public DateTime startTime { get; set; }
         public DateTime endTime { get; set; }
 
         [ForeignKey("[clientId]")]
         public int? clientId { get; set; }
-        public Client client { get; set; }
+        public virtual Client? client { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace WebApi.Model
 
         public int? assignedEmployeeemployeeId { get; set; }
 
-        public Employee? assignedEmployee { get; set; }
+        public virtual Employee? assignedEmployee { get; set; }
 
         public DateTime created { get; set; }
     }
