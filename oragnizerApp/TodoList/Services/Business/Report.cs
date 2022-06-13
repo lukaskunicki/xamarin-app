@@ -5,7 +5,6 @@
         public string Name { get; set; }
         public string Action { get; set; }
 
-
         public Report(string name, string action)
         {
             Name = name;
