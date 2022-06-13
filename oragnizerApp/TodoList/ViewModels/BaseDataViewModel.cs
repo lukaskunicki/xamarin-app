@@ -79,5 +79,55 @@ namespace TodoList.ViewModels
             }
             return teams;
         }
+
+        public async Task<List<Priority>> LoadPriorities()
+        {
+            List<Priority> priorities = new List<Priority>();
+            try
+            {
+                foreach (var priority in await _apiClient.PrioritiesAllAsync())
+                {
+                    priorities.Add(priority);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return priorities;
+        }
+        public async Task<List<Sprint>> LoadSprints()
+        {
+            List<Sprint> sprints = new List<Sprint>();
+            try
+            {
+                foreach (var sprint in await _apiClient.SprintsAllAsync())
+                {
+                    sprints.Add(sprint);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return sprints;
+        }
+
+        public async Task<List<Project>> LoadProjects()
+        {
+            List<Project> projects = new List<Project>();
+            try
+            {
+                foreach (var project in await _apiClient.ProjectsAllAsync())
+                {
+                    projects.Add(project);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return projects;
+        }
     }
 }
