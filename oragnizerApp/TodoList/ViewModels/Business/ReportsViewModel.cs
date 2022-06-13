@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -82,7 +81,7 @@ namespace TodoList.ViewModels
             try
             {
                 Employees.Clear();
-                var employees = await _apiClient.EmployeesAllAsync();
+                var employees = await LoadEmployees();
 
                 foreach (var employee in employees)
                 {
@@ -109,7 +108,7 @@ namespace TodoList.ViewModels
             try
             {
                 Sprints.Clear();
-                var sprints = await _apiClient.SprintsAllAsync();
+                var sprints = await LoadSprints();
 
                 foreach (var sprint in sprints)
                 {
@@ -132,12 +131,11 @@ namespace TodoList.ViewModels
         async Task ExecuteLoadTicketsCommand(string action, int id)
         {
             IsBusy = true;
-            Debug.WriteLine(action, id);
 
             try
             {
                 Tickets.Clear();
-                var tickets = (ICollection<Ticket>)await _apiClient.ReportsAsync(id, action);
+                var tickets = await _apiClient.ReportsAsync(id, action);
 
                 foreach (var ticket in tickets)
                 {

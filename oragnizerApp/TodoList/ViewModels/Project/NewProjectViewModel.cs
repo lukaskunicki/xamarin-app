@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using TodoList.Services.APIClient;
 using Xamarin.Forms;
 
 namespace TodoList.ViewModels
 {
-    [QueryProperty(nameof(ProjectId), nameof(ProjectId))]
-
-    public class ProjectDetailViewModel : BaseDataViewModel<APIClient>
+    public class NewProjectViewModel : BaseDataViewModel<APIClient>
     {
 
         private Employee _selectedEmployee;
@@ -29,9 +25,9 @@ namespace TodoList.ViewModels
         public Command LoadEmployeesCommand { get; }
         public Command LoadClientsCommand { get; }
 
-        public ProjectDetailViewModel()
+        public NewProjectViewModel()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
+            SaveCommand = new Command(OnSave);
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
@@ -44,13 +40,6 @@ namespace TodoList.ViewModels
             ExecuteLoadClientsCommand();
         }
 
-        private bool ValidateSave()
-        {
-            return true;
-        }
-
-        public int Id { get; set; }
-
         public int ProjectId
         {
             get
@@ -60,7 +49,6 @@ namespace TodoList.ViewModels
             set
             {
                 projectId = value;
-                LoadItemId(value);
             }
         }
 
@@ -87,7 +75,7 @@ namespace TodoList.ViewModels
             try
             {
                 Employees.Clear();
-                var employees = await _apiClient.EmployeesAllAsync();
+                var employees = await LoadEmployees();
 
                 foreach (var employee in employees)
                 {
@@ -113,11 +101,11 @@ namespace TodoList.ViewModels
             try
             {
                 Clients.Clear();
-                var clients = await _apiClient.ClientsAllAsync();
+                var clients = await LoadClients();
 
                 foreach (var client in clients)
                 {
-
+                  
                     if (!Clients.Contains(client))
                     {
                         Clients.Add(client);
@@ -151,26 +139,6 @@ namespace TodoList.ViewModels
             }
         }
 
-        public async void LoadItemId(int itemId)
-        {
-            try
-            {
-                var project = await _apiClient.ProjectsGETAsync(itemId);
-
-                if (project != null)
-                {
-                    this.ProjectId = project.ProjectId;
-                    this.Name = project.Name;
-                    this.StartTime = project.StartTime;
-                    this.EndTime = project.EndTime;
-                }
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Failed to Load Project");
-            }
-        }
-
         private async void OnCancel()
         {
             await Shell.Current.GoToAsync("..");
@@ -180,7 +148,6 @@ namespace TodoList.ViewModels
         {
             Project newProject = new Project()
             {
-                ProjectId = projectId,
                 Name = name,
                 StartTime = startTime,
                 EndTime = endTime,
@@ -190,7 +157,7 @@ namespace TodoList.ViewModels
             };
             try
             {
-                await _apiClient.ProjectsPUTAsync(newProject.ProjectId, newProject);
+                await _apiClient.ProjectsPOSTAsync(newProject);
             }
             catch (Exception e)
             {
@@ -200,8 +167,6 @@ namespace TodoList.ViewModels
             {
                 await Shell.Current.GoToAsync("..");
             }
-
-            // This will pop the current page off the navigation stack
         }
     }
 }
