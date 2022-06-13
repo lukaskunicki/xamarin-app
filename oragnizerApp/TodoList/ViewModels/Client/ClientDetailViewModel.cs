@@ -61,7 +61,7 @@ namespace TodoList.ViewModels
             try
             {
                 Employees.Clear();
-                var employees = await LoadEmployees();2
+                var employees = await LoadEmployees();
 
                 foreach (var employee in employees)
                 {

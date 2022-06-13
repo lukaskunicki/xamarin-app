@@ -24,6 +24,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Client: " />
+                                        <Span Text="&#x0a;" />
                                         <Span Text="{Binding Description}" TextColor="blue" />
                                     </FormattedString>
                                 </Label.FormattedText>
@@ -33,6 +34,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Employee: " />
+                                        <Span Text="&#x0a;" />
                                         <Span Text="{Binding ResponsibleEmployee.Surname}" TextColor="green" />
                                     </FormattedString>
                                 </Label.FormattedText>

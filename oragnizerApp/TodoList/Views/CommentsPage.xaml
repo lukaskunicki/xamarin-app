@@ -10,25 +10,45 @@
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <ListView ItemsSource="{Binding Comments}" x:Name="CommentsListView">
+    <ListView ItemsSource="{Binding Comments}" x:Name="CommentsListView" RowHeight="100">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <Frame OutlineColor="LightGray" Margin="10, 10, 10, 10" Padding="10, 10, 10, 10">
                         <FlexLayout Direction="Row" x:Name="Item">
-                            <Label Text="{Binding Content}" FlexLayout.Grow="1"  />
-
-                            <Label Text="Assigned Employee:" FlexLayout.Grow="1" >
+                            <Label Text="Description" FlexLayout.Grow="1" >
                                 <Label.FormattedText>
-                                    <FormattedString>
+                                    <FormattedString >
+                                        <Span Text="Description: " />
+                                        <Span Text="&#x0a;" />
+                                        <Span Text="{Binding Content}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+
+                            <Label Text="Assigned Employee:" FlexLayout.Grow="1">
+                                <Label.FormattedText>
+                                    <FormattedString >
                                         <Span Text="Assigned Employee: " />
+                                        <Span Text="&#x0a;" />
                                         <Span Text="{Binding AssignedEmployee.Surname}" TextColor="Green" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
 
-                            <Label Text="{Binding Created, StringFormat='{}{0:MM/dd/yyyy}'}" FlexLayout.Grow="1"  TextColor="blue"  />
-                            
+
+
+                            <Label Text="Created:" FlexLayout.Grow="1">
+                                <Label.FormattedText>
+                                    <FormattedString >
+                                        <Span Text="Created: " />
+                                        <Span Text="&#x0a;" />
+                                        <Span Text="{Binding Created, StringFormat='{}{0:MM/dd/yyyy}'}" FlexLayout.Grow="1"  TextColor="blue" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
                             <Button Text="Delete" BindingContext="{Binding Source={x:Reference CommentsListView}, Path=BindingContext}" Command="{Binding DeleteCommentCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" Background="#F4364C"/>
                             <Button Text="Edit" BindingContext="{Binding Source={x:Reference CommentsListView}, Path=BindingContext}" Command="{Binding EditCommentCommand}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
                         </FlexLayout>

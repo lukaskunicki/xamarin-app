@@ -5,27 +5,66 @@
              x:Class="TodoList.Views.CommentDetailPage"
              Title="Add a new comment">
 
-    <StackLayout Spacing="20" Padding="15">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <StackLayout Margin="20">
+        <Frame OutlineColor="LightGray" Grid.Row="0" Grid.Column="0">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <Label Text="Content:" FontSize="Micro" />
+                <Label Text="{Binding Content}"  FontSize="Micro"/>
+
+            </StackLayout>
+        </Frame>
+
+        <Frame OutlineColor="LightGray" Grid.Row="1" Grid.Column="0">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <Label Text="Assigned Employee:" FontSize="Micro" TextColor="#000" />
+                <Label  Text="{Binding AssignedEmployee.Surname}" FontSize="Micro"/>
+            </StackLayout>
+        </Frame>
+        
+        <Frame OutlineColor="LightGray" Grid.Row="2" Grid.Column="0">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <Label Text="Added:" FontSize="Micro" TextColor="#000" />
+                <Label  Text="{Binding Created, StringFormat='{}{0:MM/dd/yyyy}'}" FontSize="Micro"/>
+            </StackLayout>
+        </Frame>
+
+
+        <StackLayout Margin="20" Grid.Column="1">
             <Label Text="Content:" FontSize="Micro" />
             <Entry Text="{Binding Content, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
             <Picker 
+                TitleColor="black"
                 Title="Assigned Employee" 
                 ItemsSource="{Binding Employees}"  
                 ItemDisplayBinding="{Binding Surname}"
-                SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
-                />
+                SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}" />
 
-            <DatePicker Date="{Binding Created}"
-                        MinimumDate="{x:Static system:DateTime.Today}"/>
+            <Label Text="Edit the date to added comment:" FontSize="Micro" />
+            <DatePicker 
+                HorizontalOptions="Start"
+                Date="{Binding Created}"
+                MinimumDate="{x:Static system:DateTime.Today}"/>
 
         </StackLayout>
 
-        <StackLayout Orientation="Horizontal" Margin="15">
+        <StackLayout Orientation="Horizontal" Margin="15" Grid.Column="1" Grid.Row="3">
             <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
             <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" TextColor="#fff"></Button>
         </StackLayout>
-    </StackLayout>
+    </Grid>
 
 </ContentPage>

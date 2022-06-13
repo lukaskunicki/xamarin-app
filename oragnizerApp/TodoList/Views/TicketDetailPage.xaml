@@ -79,7 +79,8 @@
                 SelectedItem="{Binding SelectedSprint, Mode=TwoWay}"
                 />
             <Label Text="Data dodania:" FontSize="Micro" />
-            <DatePicker 
+            <DatePicker
+                HorizontalOptions="Start"
                 Date="{Binding Created}"
                 MinimumDate="01/01/2010" />
 

@@ -5,22 +5,36 @@
             
              Title="Edit Priority">
 
-    <StackLayout Spacing="20" Padding="15">
-        <Frame OutlineColor="LightGray">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Frame OutlineColor="LightGray" Grid.Row="0" Grid.Column="0">
             <StackLayout Orientation="Horizontal"
                          Spacing="15">
                 <Label Text="Name:" FontSize="Micro" />
                 <Label Text="{Binding Name}"  FontSize="Micro" TextColor="#000"/>
-                <StackLayout Margin="20">
-                    <Label Text="New Name:" FontSize="Micro" />
-                    <Entry Text="{Binding Name, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
-                </StackLayout>
             </StackLayout>
         </Frame>
-        <StackLayout Orientation="Horizontal" Margin="15">
+        
+        <StackLayout Margin="20" Grid.Row="0" Grid.Column="1">
+            <Label Text="New Name:" FontSize="Micro" />
+            <Entry Text="{Binding Name, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
+        </StackLayout>
+
+
+        <StackLayout Orientation="Horizontal" Margin="15" Grid.Row="2" Grid.Column="1">
             <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
             <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" TextColor="#fff"></Button>
         </StackLayout>
-    </StackLayout>
+    </Grid>
 
 </ContentPage>

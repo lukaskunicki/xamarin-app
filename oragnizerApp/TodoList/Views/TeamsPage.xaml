@@ -23,6 +23,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Name: " />
+                                        <Span Text="&#x0a;" />
                                         <Span Text="{Binding TeamName}" />
                                     </FormattedString>
                                 </Label.FormattedText>
@@ -31,6 +32,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Description: " />
+                                        <Span Text="&#x0a;" />
                                         <Span Text="{Binding TeamDescription}"/>
                                     </FormattedString>
                                 </Label.FormattedText>

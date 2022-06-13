@@ -7,11 +7,17 @@
     <StackLayout Spacing="20" Padding="15">
 
         <StackLayout Margin="20">
-            <Label Text="New Name:" FontSize="Micro" />
-            <Entry Text="{Binding Name, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter name" FontSize="Micro" />
-            <Entry Text="{Binding Surname, Mode=TwoWay}"  Grid.Column="1" Placeholder="Surname" FontSize="Micro" />
-            <Picker 
-                Title="Selected Team" 
+            <Label Text="New Employee:" FontSize="Micro" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Entry Text="{Binding Name, Mode=TwoWay}"  Grid.Column="0" Placeholder="Name" FontSize="Micro" />
+                <Entry Text="{Binding Surname, Mode=TwoWay}"  Grid.Column="1" Placeholder="Surname" FontSize="Micro" />
+            </Grid>
+            <Picker TitleColor="black"
+                Title="Select Team" 
                 ItemsSource="{Binding Teams}"  
                 ItemDisplayBinding="{Binding TeamName}"
                 SelectedItem="{Binding SelectedTeam, Mode=TwoWay}"

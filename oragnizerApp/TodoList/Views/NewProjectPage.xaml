@@ -5,42 +5,65 @@
              Title="Add a new project">
 
     <StackLayout Spacing="20" Padding="15">
+        
 
-        <StackLayout Margin="20">
-            <Label Text="New Name:" FontSize="Micro" />
-            <Entry Text="{Binding Name, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
-            <Picker 
-                TitleColor="Black"
-                TextColor="Black"
-                Title="Responsible Employee" 
-                ItemsSource="{Binding Employees}"  
-                ItemDisplayBinding="{Binding Surname}"
-                SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
-                />
-            <Picker 
-                TitleColor="Black"
-                TextColor="Black"
-                Title="Clients" 
-                ItemsSource="{Binding Clients}"  
-                ItemDisplayBinding="{Binding Description}"
-                SelectedItem="{Binding SelectedClient, Mode=TwoWay}"
-                />
             <StackLayout Margin="20">
-                <Label Text="Pick start date:" FontSize="Micro" />
-                <DatePicker 
-                Date="{Binding StartTime}"
-                MinimumDate="01/01/2010" />
-            </StackLayout>
+                <Label Text="New Name:" FontSize="Micro" />
+                <Entry Text="{Binding Name, Mode=TwoWay}" Placeholder="Enter text" FontSize="Micro" />
 
-            
-            <StackLayout Margin="20">
-                <Label Text="Pick end date:" FontSize="Micro" />
-                <DatePicker 
-                Date="{Binding EndTime}"
-                MinimumDate="01/01/2010" />
-            </StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Picker 
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    TitleColor="Black"
+                    TextColor="Black"
+                    Title="Responsible Employee" 
+                    ItemsSource="{Binding Employees}"  
+                    ItemDisplayBinding="{Binding Surname}"
+                    SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"/>
+
+                <Picker 
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    TitleColor="Black"
+                    TextColor="Black"
+                    Title="Clients" 
+                    ItemsSource="{Binding Clients}"  
+                    ItemDisplayBinding="{Binding Description}"
+                    SelectedItem="{Binding SelectedClient, Mode=TwoWay}"/>
+
+
+                <StackLayout Grid.Column="0" Grid.Row="1" >
+                    <Label Text="Pick start date:" FontSize="Micro" />
+                    <DatePicker
+                        HorizontalOptions="Start"
+                        FlexLayout.AlignSelf="Start" 
+                        Date="{Binding StartTime}"
+                        MinimumDate="01/01/2010"/>
+                </StackLayout>
+
+
+                <StackLayout Grid.Column="1" Grid.Row="1">
+                    <Label Text="Pick end date:" FontSize="Micro" />
+                    <DatePicker
+                        HorizontalOptions="Start"
+                        Date="{Binding EndTime}"
+                        MinimumDate="01/01/2010" />
+                </StackLayout>
+
+            </Grid>
         </StackLayout>
+        
 
         <StackLayout Orientation="Horizontal" Margin="15">
             <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>

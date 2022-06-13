@@ -13,7 +13,7 @@
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <ListView ItemsSource="{Binding Projects}" x:Name="ProjectsListView" RowHeight="100">
+    <ListView ItemsSource="{Binding Projects}" x:Name="ProjectsListView" >
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
@@ -23,6 +23,7 @@
                                 <Label.FormattedText >
                                     <FormattedString>
                                         <Span Text="Name: " />
+                                        <Span Text="&#x0a;" />
                                         <Span Text="{Binding Name}"  />
                                     </FormattedString>
                                 </Label.FormattedText>
@@ -31,6 +32,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Start Time: " />
+                                        <Span Text="&#x0a;" />
                                         <Span Text="{Binding StartTime, StringFormat='{}{0:MM/dd/yyyy}'}" TextColor="Green"/>
                                     </FormattedString>
                                 </Label.FormattedText>
@@ -39,6 +41,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="End Time: " />
+                                        <Span Text="&#x0a;" />
                                         <Span Text="{Binding EndTime, StringFormat='{}{0:MM/dd/yyyy}'}" TextColor="red"/>
                                     </FormattedString>
                                 </Label.FormattedText>
@@ -47,6 +50,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Project menager: " />
+                                        <Span Text="&#x0a;" />
                                         <Span Text="{Binding ProjectManager.Surname}"/>
                                         <Span Text=" "/>
                                         <Span Text="{Binding ProjectManager.Name}"/>
@@ -57,6 +61,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Client: " />
+                                        <Span Text="&#x0a;" />
                                         <Span Text="{Binding Client.Description}"/>
                                     </FormattedString>
                                 </Label.FormattedText>

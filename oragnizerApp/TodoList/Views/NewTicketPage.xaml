@@ -6,32 +6,54 @@
         <StackLayout Spacing="20" Padding="15">
 
             <StackLayout Margin="20">
-                <Label Text="Title:" FontSize="Micro" />
+                <Label Text="Title:" FontSize="Micro" TextColor="Black" />
                 <Entry Text="{Binding Title, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
-                <Picker
-                    Title="Priority"
-                    ItemsSource="{Binding Priorities}"
-                    ItemDisplayBinding="{Binding Name}"
-                    SelectedItem="{Binding SelectedPriority, Mode=TwoWay}"
-                />
-                <Picker
-                    Title="Assigned employee"
-                    ItemsSource="{Binding Employees}"
-                    ItemDisplayBinding="{Binding Surname}"
-                    SelectedItem="{Binding AssignedEmployee, Mode=TwoWay}"
-                />
-                <Picker
-                    Title="Responsible employee"
-                    ItemsSource="{Binding Employees}"
-                    ItemDisplayBinding="{Binding Surname}"
-                    SelectedItem="{Binding ReporterEmployee, Mode=TwoWay}"
-                />
-                <Picker
-                    Title="Sprint"
-                    ItemsSource="{Binding Sprints}"
-                    ItemDisplayBinding="{Binding StartTime}"
-                    SelectedItem="{Binding SelectedSprint, Mode=TwoWay}"
-                />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+
+
+                    <StackLayout Orientation="Vertical" Grid.Column="0" Grid.Row="0" >
+                        <Label Text="Priority:" FontSize="Micro" TextColor="Black"  />
+                        <Picker
+                            ItemsSource="{Binding Priorities}"
+                            ItemDisplayBinding="{Binding Name}"
+                            SelectedItem="{Binding SelectedPriority, Mode=TwoWay}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Grid.Column="1" Grid.Row="0">
+                        <Label Text="Assigned employee:" FontSize="Micro" TextColor="Black" />
+                        <Picker
+                            ItemsSource="{Binding Employees}"
+                            ItemDisplayBinding="{Binding Surname}"
+                            SelectedItem="{Binding AssignedEmployee, Mode=TwoWay}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Grid.Column="0" Grid.Row="1">
+                        <Label Text="Responsible employee:" FontSize="Micro" TextColor="Black" />
+                        <Picker
+                            ItemsSource="{Binding Employees}"
+                            ItemDisplayBinding="{Binding Surname}"
+                            SelectedItem="{Binding ReporterEmployee, Mode=TwoWay} "/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+                        <Label Text="Sprint:" FontSize="Micro" TextColor="Black" />
+                        <Picker
+                            ItemsSource="{Binding Sprints}"
+                            ItemDisplayBinding="{Binding StartTime}"
+                            SelectedItem="{Binding SelectedSprint, Mode=TwoWay}"/>
+                    </StackLayout>
+                </Grid>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" Margin="15">

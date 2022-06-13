@@ -5,24 +5,46 @@
             
              Title="Edit Team">
 
-    <StackLayout Spacing="20" Padding="15">
-        <Frame OutlineColor="LightGray">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+
+        <Frame OutlineColor="LightGray" Grid.Row="0" Grid.Column="0">
             <StackLayout Orientation="Horizontal"
                          Spacing="15">
                 <Label Text="Team name:" FontSize="Micro" />
-                <Label Text="{Binding TeamName}"  FontSize="Micro" TextColor="#000" LineBreakMode="WordWrap"/>
-                <Label Text="Team description:" FontSize="Micro" LineBreakMode="WordWrap" />
-                <Label Text="{Binding TeamDescription}"  FontSize="Micro" TextColor="#000" LineBreakMode="WordWrap"/>
-                <Label Text="New team name:" FontSize="Micro" LineBreakMode="WordWrap" />
-                    <Entry Text="{Binding TeamName, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
-                    <Label Text="New team description::" FontSize="Micro" />
-                <Entry Text="{Binding TeamDescription, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro"/>
+                <Label Text="{Binding TeamName}"  FontSize="Micro" TextColor="#000"/>
+
             </StackLayout>
         </Frame>
-        <StackLayout Orientation="Horizontal" Margin="15">
+
+        <Frame OutlineColor="LightGray" Grid.Row="1" Grid.Column="0">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <Label Text="Description:" FontSize="Micro" TextColor="#000" />
+                <Label Text="{Binding TeamDescription}" FontSize="Micro" TextColor="#000"/>
+            </StackLayout>
+        </Frame>
+
+
+        <StackLayout Orientation="Horizontal" Spacing="15" Grid.Column="1">
+            <Entry Text="{Binding TeamName, Mode=TwoWay}" FontSize="Micro" Grid.Row="0" />
+
+            <Entry Text="{Binding TeamDescription, Mode=TwoWay}" FontSize="Micro" Grid.Row="1"/>
+        </StackLayout>
+        
+        <StackLayout Orientation="Horizontal" Margin="15" Grid.Row="2" Grid.Column="1">
             <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
             <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" TextColor="#fff"></Button>
         </StackLayout>
-    </StackLayout>
+    </Grid>
 
 </ContentPage>

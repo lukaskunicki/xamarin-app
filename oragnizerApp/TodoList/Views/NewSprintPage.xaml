@@ -5,21 +5,30 @@
              Title="Add a new Sprint">
 
     <StackLayout Spacing="20" Padding="15">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            
 
-        <StackLayout Margin="20">
-            <Label Text="Pick start date:" FontSize="Micro" />
-            <DatePicker 
+            <StackLayout Margin="20" Grid.Column="0" Orientation="Vertical">
+                <Label Text="Select start date:" FontSize="Micro" TextColor="Green" />
+                <DatePicker 
                 Date="{Binding StartTime}"
                 MinimumDate="01/01/2010" />
-        </StackLayout>
+            </StackLayout>
 
-        <StackLayout Margin="20">
-            <Label Text="Pick end date:" FontSize="Micro" />
-            <DatePicker 
+            <StackLayout Margin="20" Grid.Column="1" Orientation="Vertical">
+                <Label Text="Select end date:" FontSize="Micro" TextColor="red"/>
+                <DatePicker 
                 Date="{Binding EndTime}"
                 MinimumDate="01/01/2010" />
-        </StackLayout>
+            </StackLayout>
 
+        </Grid>
+        
         <StackLayout Orientation="Horizontal" Margin="15">
             <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
             <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" TextColor="#fff"></Button>

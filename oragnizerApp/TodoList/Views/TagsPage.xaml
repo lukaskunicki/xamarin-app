@@ -20,6 +20,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Description: " />
+                                        <Span Text="&#x0a;" />
                                         <Span Text="{Binding Description}"/>
                                     </FormattedString>
                                 </Label.FormattedText>

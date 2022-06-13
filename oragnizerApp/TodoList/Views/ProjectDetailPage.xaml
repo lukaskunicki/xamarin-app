@@ -4,11 +4,68 @@
              x:Class="TodoList.Views.ProjectDetailPage"
              Title="Edit Project">
 
-    <StackLayout Spacing="20" Padding="15">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="75" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <StackLayout Margin="20">
+
+        <Frame OutlineColor="LightGray" Grid.Row="0" Grid.Column="0">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <Label Text="Name:" FontSize="Micro" />
+                <Label Text="{Binding Name}"  FontSize="Micro" TextColor="#000"/>
+
+            </StackLayout>
+        </Frame>
+        <Frame OutlineColor="LightGray" Grid.Row="1" Grid.Column="0">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <Label Text="Responsible Employee:&#x0a;" FontSize="Micro" TextColor="#000" />
+                <Label Text="{Binding ProjectManager}" FontSize="Micro" TextColor="#000"/>
+            </StackLayout>
+        </Frame>
+        <Frame OutlineColor="LightGray" Grid.Row="2" Grid.Column="0">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <Label Text="Clients:" FontSize="Micro" TextColor="#000" />
+                <Label Text="{Binding Client}" FontSize="Micro" TextColor="#000"/>
+            </StackLayout>
+        </Frame>
+        <Frame OutlineColor="LightGray" Grid.Row="3" Grid.Column="0">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <Label Text="Start date:" FontSize="Micro" TextColor="#000" />
+                <Label  
+                    HorizontalOptions="Start"
+                    Text="{Binding StartTime, StringFormat='{}{0:MM/dd/yyyy}'}" 
+                    FontSize="Micro" TextColor="#000"/>
+            </StackLayout>
+        </Frame>
+        <Frame OutlineColor="LightGray" Grid.Row="4" Grid.Column="0">
+            <StackLayout Orientation="Horizontal"
+                         Spacing="15">
+                <Label Text="End date:" FontSize="Micro" TextColor="#000" />
+                <Label  
+                    HorizontalOptions="Start"
+                    Text="{Binding EndTime, StringFormat='{}{0:MM/dd/yyyy}'}" 
+                    FontSize="Micro" TextColor="#000"/>
+            </StackLayout>
+        </Frame>
+
+        <StackLayout Margin="20" Grid.Row="0" Grid.Column="1">
             <Label Text="New Name:" FontSize="Micro" />
-            <Entry Text="{Binding Name, Mode=TwoWay}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
+            <Entry Text="{Binding Name}"  Grid.Column="1" Placeholder="Enter text" FontSize="Micro" />
             <Picker 
                 TitleColor="Black"
                 TextColor="Black"
@@ -25,27 +82,30 @@
                 ItemDisplayBinding="{Binding Description}"
                 SelectedItem="{Binding SelectedClient, Mode=TwoWay}"
                 />
-            <StackLayout Margin="20">
+            <StackLayout >
                 <Label Text="Pick start date:" FontSize="Micro" />
                 <DatePicker 
-                Date="{Binding StartTime, StringFormat='{}{0:MM/dd/yyyy}'}"
-                MinimumDate="01/01/2010" />
+                    HorizontalOptions="Start"
+                    Date="{Binding StartTime, StringFormat='{}{0:MM/dd/yyyy}'}"
+                    MinimumDate="01/01/2010" />
             </StackLayout>
 
 
-            <StackLayout Margin="20">
+            <StackLayout Grid.Row="0" Grid.Column="4">
                 <Label Text="Pick end date:" FontSize="Micro" />
-                <DatePicker 
-                Date="{Binding EndTime, StringFormat='{}{0:MM/dd/yyyy}'}"
-                MinimumDate="01/01/2010" />
+                <DatePicker
+                    HorizontalOptions="Start"
+                    Date="{Binding EndTime, StringFormat='{}{0:MM/dd/yyyy}'}"
+                    MinimumDate="01/01/2010" />
             </StackLayout>
-
         </StackLayout>
 
-        <StackLayout Orientation="Horizontal" Margin="15">
+
+        <StackLayout Orientation="Horizontal" Margin="15" Grid.Row="6" Grid.Column="1">
             <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
             <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" TextColor="#fff"></Button>
         </StackLayout>
-    </StackLayout>
+
+    </Grid>
 
 </ContentPage>
